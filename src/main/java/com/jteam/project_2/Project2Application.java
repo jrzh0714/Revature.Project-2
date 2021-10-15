@@ -10,4 +10,9 @@ public class Project2Application {
         SpringApplication.run(Project2Application.class, args);
     }
 
+    @Bean
+    public CommandLineRunner commandLineRunner(){
+        return args -> System.out.println("Hello");
+    }
+
 }
