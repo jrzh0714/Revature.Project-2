@@ -26,11 +26,14 @@ public class TeaspoonTesting {
     }
 
     @Test
-    public void ConvertFromTablespoon() {
+    public void ConvertTest() {
         StepIngredient mockStepIngredient = mock(StepIngredient.class);
+        VolumeUnit mockVolumeUnit = mock(VolumeUnit.class);
 
         when(mockStepIngredient.getVolume()).thenReturn(1.0);
-        when(mockStepIngredient.getVolumeUnit()).thenReturn(new Tablespoon());
+        when(mockStepIngredient.getVolumeUnit()).thenReturn(mockVolumeUnit);
+
+        when(mockVolumeUnit.getFactor()).thenReturn(3.0);
 
         testTeaspoon.convertUnit(mockStepIngredient);
 

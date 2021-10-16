@@ -10,7 +10,10 @@ public abstract class VolumeUnit {
     protected double factor;
 
     public void convertUnit(StepIngredient stepIngredient) {
-
+        VolumeUnit oldVolumeUnit = stepIngredient.getVolumeUnit();
+        double newVolume = stepIngredient.getVolume() * (oldVolumeUnit.getFactor() / factor);
+        stepIngredient.setVolume(newVolume);
+        stepIngredient.setVolumeUnit(this);
     }
 
 }
