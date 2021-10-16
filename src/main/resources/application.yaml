@@ -1,0 +1,15 @@
+server:
+  port: 8001
+  servlet:
+    context-path: /
+
+my:
+  message:
+    value: 'Hello, World'
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres-project.c51fifophylr.us-east-2.rds.amazonaws.com:5432/postgres
+    username: postgres
+    password: jteam2021
+    driver-class-name: org.postgresql.Driver
