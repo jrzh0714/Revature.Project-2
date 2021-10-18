@@ -3,10 +3,8 @@ package com.jteam.project_2.models;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -18,8 +16,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class UserHistory {
-    // composite key
+public class UserHistory implements Serializable {
+
     @Id
     private int userId;
     @Id
