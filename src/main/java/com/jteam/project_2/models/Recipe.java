@@ -1,21 +1,38 @@
 package com.jteam.project_2.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 @Table(name = "recipes")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class Recipe {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="recipe_id")
     private long id;
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    @JsonBackReference
+    @MapsId
+    private User user;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Step> recipeSteps;
+
 
     @Column(name="recipe_name")
     private String name;
@@ -31,4 +48,40 @@ public class Recipe {
 
     @Column(name="view_count")
     private int viewCount;
+
+    @Column(name="publish_date")
+    private Date publishDate;
+
+    @Column(name="difficulty")
+    private int Difficulty;
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", recipeSteps=" + recipeSteps +
+                ", name='" + name + '\'' +
+                ", rating=" + rating +
+                ", thumbnail=" + Arrays.toString(thumbnail) +
+                ", likes=" + likes +
+                ", viewCount=" + viewCount +
+                ", publishDate=" + publishDate +
+                ", Difficulty=" + Difficulty +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Recipe recipe = (Recipe) o;
+        return Objects.equals(id, recipe.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
+
+
 }

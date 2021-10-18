@@ -23,4 +23,5 @@ public class UserRole implements Serializable {
     @Id
     @Column(name="role_id")
     private int roleId;
+
 }
