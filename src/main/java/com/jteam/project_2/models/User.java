@@ -1,5 +1,6 @@
 package com.jteam.project_2.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -17,7 +18,8 @@ import com.jteam.project_2.models.UserDemographic;
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    @Column(name="user_id")
+    private int user_id;
 
     @Column(name="username")
     private String username;
@@ -47,8 +49,22 @@ public class User {
 
     @JsonManagedReference
     @OneToMany
-    //composite primary key
     private List<UserHistory> userHistory;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + user_id +
+                ", username='" + username + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", avatarURL='" + avatarURL + '\'' +
+                ", hash='" + hash + '\'' +
+                ", demographic=" + demographic +
+                '}';
+    }
+    
     @JsonManagedReference
     @OneToMany
     //composite foreign key
@@ -57,4 +73,5 @@ public class User {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private List<Recipe> userRecipeList;
+
 }

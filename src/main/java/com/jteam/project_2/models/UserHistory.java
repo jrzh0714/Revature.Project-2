@@ -12,15 +12,15 @@ import java.util.Objects;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @RequiredArgsConstructor
 public class UserHistory implements Serializable {
 
     @Id
+    @Column(name="user_id")
     private int userId;
     @Id
+    @Column(name="recipe_id")
     private int recipeId;
 
     @Column(name="most_recent_view")

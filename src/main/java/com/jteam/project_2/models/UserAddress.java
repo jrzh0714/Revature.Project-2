@@ -1,28 +1,35 @@
 package com.jteam.project_2.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.*;
-import org.hibernate.Hibernate;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.Hibernate;
 import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "user_address")
 @Entity
-@Getter
-@Setter
+@Data
+
 @RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserAddress {
     @Id
-    private int id;
+    @Column(name="user_id")
+    private int userId;
 
     @JoinColumn(name = "user_id")
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JsonBackReference
     @MapsId
     private User user;
+
 
     @Column(name="address")
     private String address;
@@ -63,4 +70,5 @@ public class UserAddress {
     public int hashCode() {
         return 0;
     }
+
 }

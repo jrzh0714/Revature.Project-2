@@ -13,3 +13,7 @@ spring:
     username: postgres
     password: jteam2021
     driver-class-name: org.postgresql.Driver
+  security:
+    user:
+      name: 'JTeam'
+      password: 'password2021'

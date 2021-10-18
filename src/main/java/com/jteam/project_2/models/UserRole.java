@@ -1,29 +1,27 @@
 package com.jteam.project_2.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
-@Table(name = "user_roles")
 @Entity
-@Getter
-@Setter
-@RequiredArgsConstructor
+@Table(name="user_roles")
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRole {
+@Data
+public class UserRole implements Serializable {
     @Id
-    private int id;
+    @Column(name="user_id")
+    private int userId;
 
-    private int role_id;
-
-    private int user_id;
-
-    private Date from_date;
-
-
-
+    @Id
+    @Column(name="role_id")
+    private int roleId;
 
 }

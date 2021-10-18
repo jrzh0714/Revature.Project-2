@@ -18,6 +18,7 @@ import java.util.Objects;
 public class UserDemographic {
 
     @Id
+    @Column(name="user_id")
     private int id;
 
     @JoinColumn(name = "user_id")
