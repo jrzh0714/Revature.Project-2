@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Table(name = "user_history")
@@ -12,7 +13,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UserHistory {
+public class UserHistory implements Serializable {
     @Id
     private int userId;
     @Id
