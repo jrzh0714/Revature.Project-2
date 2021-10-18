@@ -1,6 +1,7 @@
 package com.jteam.project_2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,10 +37,24 @@ public class User {
     @Column(name="hash")
     private String hash;
 
-    @JsonIgnoreProperties(ignoreUnknown = true, value = {"id"})
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private UserDemographic demographic;
 
+    @JsonManagedReference
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
+    private UserAddress address;
+
+    @JsonManagedReference
     @OneToMany
+    //composite primary key
     private List<UserHistory> userHistory;
+    @JsonManagedReference
+    @OneToMany
+    //composite foreign key
+    private List<UserRole> userRoleList;
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
+    private List<Recipe> userRecipeList;
 }
