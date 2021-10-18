@@ -2,21 +2,19 @@ package com.jteam.project_2.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 @Table(name = "user_address")
 @Entity
 @Data
 
-@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserAddress {
@@ -49,7 +47,7 @@ public class UserAddress {
     @Override
     public String toString() {
         return "UserAddress{" +
-                "id=" + id +
+                "id=" + userId +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
@@ -63,7 +61,7 @@ public class UserAddress {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         UserAddress that = (UserAddress) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(userId, that.userId);
     }
 
     @Override
