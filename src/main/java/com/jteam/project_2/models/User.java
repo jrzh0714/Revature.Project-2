@@ -1,5 +1,6 @@
 package com.jteam.project_2.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -16,7 +17,8 @@ import com.jteam.project_2.models.UserDemographic;
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    @Column(name="user_id")
+    private int user_id;
 
     @Column(name="username")
     private String username;
@@ -41,5 +43,20 @@ public class User {
     private UserDemographic demographic;
 
     @OneToMany
+    @JsonIgnore
     private List<UserHistory> userHistory;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + user_id +
+                ", username='" + username + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", avatarURL='" + avatarURL + '\'' +
+                ", hash='" + hash + '\'' +
+                ", demographic=" + demographic +
+                '}';
+    }
 }

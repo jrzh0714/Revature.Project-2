@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class UserDemographic {
 
     @Id
+    @Column(name="user_id")
     private int id;
 
     @JsonIgnoreProperties(ignoreUnknown = true, value = {"id"})
