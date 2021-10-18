@@ -13,7 +13,6 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@RequiredArgsConstructor
 public class UserHistory implements Serializable {
 
     @Id

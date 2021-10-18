@@ -17,7 +17,6 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class Recipe {
     @Id
     @Column(name="recipe_id")

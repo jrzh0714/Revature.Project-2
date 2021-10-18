@@ -14,7 +14,6 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class Step {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
