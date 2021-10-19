@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
@@ -17,15 +18,14 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Recipe {
+public class Recipe implements Serializable {
     @Id
     @Column(name="recipe_id")
-    private long id;
+    private int id;
 
     @JoinColumn(name = "user_id")
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JsonBackReference
-    @MapsId
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe", fetch = FetchType.LAZY)

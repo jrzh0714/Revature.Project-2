@@ -47,6 +47,10 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private UserAddress address;
 
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
+    private List<Recipe> userRecipeList;
+
     /*
     * @JsonManagedReference
     @OneToMany
@@ -57,9 +61,7 @@ public class User {
     //composite foreign key
     private List<UserRole> userRoleList;
 
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Recipe> userRecipeList;
+
     * */
 
     @Override
