@@ -47,9 +47,20 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private UserAddress address;
 
-    @JsonManagedReference
+    /*
+    * @JsonManagedReference
     @OneToMany
     private List<UserHistory> userHistory;
+    *
+    * @JsonManagedReference
+    @OneToMany
+    //composite foreign key
+    private List<UserRole> userRoleList;
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
+    private List<Recipe> userRecipeList;
+    * */
 
     @Override
     public String toString() {
@@ -65,13 +76,6 @@ public class User {
                 '}';
     }
     
-    @JsonManagedReference
-    @OneToMany
-    //composite foreign key
-    private List<UserRole> userRoleList;
 
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Recipe> userRecipeList;
 
 }
