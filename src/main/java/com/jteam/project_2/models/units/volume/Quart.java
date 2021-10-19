@@ -5,4 +5,9 @@ public class Quart extends VolumeUnit{
         unitName = "quart";
         factor = 192;
     }
+
+    @Override
+    public Integer toInt() {
+        return 5;
+    }
 }

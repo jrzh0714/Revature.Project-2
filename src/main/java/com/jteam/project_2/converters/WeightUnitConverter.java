@@ -1,0 +1,34 @@
+package com.jteam.project_2.converters;
+
+import com.jteam.project_2.models.units.weight.Ounce;
+import com.jteam.project_2.models.units.weight.Pound;
+import com.jteam.project_2.models.units.weight.WeightUnit;
+
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
+
+@Converter
+public class WeightUnitConverter implements AttributeConverter<WeightUnit, Integer> {
+
+    @Override
+    public Integer convertToDatabaseColumn(WeightUnit weightUnit) {
+        return weightUnit.toInt();
+    }
+
+    @Override
+    public WeightUnit convertToEntityAttribute(Integer newWeightUnitIndex) {
+        WeightUnit newWeightUnit;
+        int i = newWeightUnitIndex.intValue();
+        switch(i) {
+            case 1:
+                newWeightUnit = new Ounce();
+                break;
+            case 2:
+                newWeightUnit = new Pound();
+                break;
+            default:
+                throw new IndexOutOfBoundsException("newVolumeUnitIndex out of bounds! newVolumeUnitIndex = " + i);
+        }
+        return newWeightUnit;
+    }
+}

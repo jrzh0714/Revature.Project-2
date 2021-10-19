@@ -19,4 +19,6 @@ public abstract class WeightUnit {
         stepIngredient.setWeight(newWeight);
         stepIngredient.setWeightUnit(this);
     }
+
+    public abstract Integer toInt();
 }

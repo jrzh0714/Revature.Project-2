@@ -41,4 +41,9 @@ public class GallonTesting {
         assertEquals(0.5, newVolume.doubleValue(),0.001, "Volume wrong after unit conversion!");
         verify(mockStepIngredient).setVolumeUnit(testGallon);
     }
+
+    @Test
+    public void toIntTest() {
+        assertEquals(Integer.valueOf(6), testGallon.toInt());
+    }
 }

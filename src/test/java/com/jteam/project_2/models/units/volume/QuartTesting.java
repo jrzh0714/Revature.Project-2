@@ -41,4 +41,9 @@ public class QuartTesting {
         assertEquals(4.0, newVolume.doubleValue(),0.001, "Volume wrong after unit conversion!");
         verify(mockStepIngredient).setVolumeUnit(testQuart);
     }
+
+    @Test
+    public void toIntTest() {
+        assertEquals(Integer.valueOf(5), testQuart.toInt());
+    }
 }

@@ -5,4 +5,9 @@ public class Pound extends WeightUnit{
         unitName = "pound";
         factor = 16;
     }
+
+    @Override
+    public Integer toInt() {
+        return 2;
+    }
 }
