@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Step {
+public class Step implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="step_id")
@@ -23,6 +24,7 @@ public class Step {
     @JoinColumn(name = "recipe_id")
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JsonBackReference
+    @MapsId
     private Recipe recipe;
 
     @Column(name="step_desc")

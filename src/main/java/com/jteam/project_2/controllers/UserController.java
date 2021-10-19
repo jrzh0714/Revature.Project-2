@@ -3,6 +3,7 @@ package com.jteam.project_2.controllers;
 import com.jteam.project_2.models.User;
 import com.jteam.project_2.models.UserDemographic;
 import com.jteam.project_2.services.UserService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,7 +27,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable int id) {
-        return userService.getUserById(id);
+        return (User) Hibernate.unproxy(userService.getUserById(id));
     }
 
     @GetMapping("/{id}/{gender}")
