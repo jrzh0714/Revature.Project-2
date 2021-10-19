@@ -35,6 +35,12 @@ public class VolumeUnitConverter implements AttributeConverter<VolumeUnit, Integ
             case 6:
                 newVolumeUnit = new Gallon();
                 break;
+            case 7:
+                newVolumeUnit = new Milliliter();
+                break;
+            case 8:
+                newVolumeUnit = new Liter();
+                break;
             default:
                 throw new IndexOutOfBoundsException("newVolumeUnitIndex out of bounds! newVolumeUnitIndex = " + i);
         }

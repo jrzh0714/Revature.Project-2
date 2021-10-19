@@ -1,8 +1,6 @@
 package com.jteam.project_2.converters;
 
-import com.jteam.project_2.models.units.weight.Ounce;
-import com.jteam.project_2.models.units.weight.Pound;
-import com.jteam.project_2.models.units.weight.WeightUnit;
+import com.jteam.project_2.models.units.weight.*;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -25,6 +23,12 @@ public class WeightUnitConverter implements AttributeConverter<WeightUnit, Integ
                 break;
             case 2:
                 newWeightUnit = new Pound();
+                break;
+            case 3:
+                newWeightUnit = new Gram();
+                break;
+            case 4:
+                newWeightUnit = new Kilogram();
                 break;
             default:
                 throw new IndexOutOfBoundsException("newVolumeUnitIndex out of bounds! newVolumeUnitIndex = " + i);

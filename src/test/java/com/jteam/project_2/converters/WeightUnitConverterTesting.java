@@ -1,7 +1,5 @@
 package com.jteam.project_2.converters;
 
-import com.jteam.project_2.models.units.volume.Teaspoon;
-import com.jteam.project_2.models.units.volume.VolumeUnit;
 import com.jteam.project_2.models.units.weight.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,6 +40,22 @@ public class WeightUnitConverterTesting {
         WeightUnit testWeightUnit = testWeightUnitConverter.convertToEntityAttribute(testInteger);
 
         assertTrue(testWeightUnit instanceof Pound, "convertToEntityAttribute did not return a Pound!");
+    }
+
+    @Test
+    public void convertToGramTest() {
+        Integer testInteger = new Integer(3);
+        WeightUnit testWeightUnit = testWeightUnitConverter.convertToEntityAttribute(testInteger);
+
+        assertTrue(testWeightUnit instanceof Gram, "convertToEntityAttribute did not return a Gram!");
+    }
+
+    @Test
+    public void convertToKilogramTest() {
+        Integer testInteger = new Integer(4);
+        WeightUnit testWeightUnit = testWeightUnitConverter.convertToEntityAttribute(testInteger);
+
+        assertTrue(testWeightUnit instanceof Kilogram, "convertToEntityAttribute did not return a Kilogram!");
     }
 
     @Test

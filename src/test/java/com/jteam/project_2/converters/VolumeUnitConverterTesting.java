@@ -75,6 +75,22 @@ public class VolumeUnitConverterTesting {
     }
 
     @Test
+    public void convertToMilliliterTest() {
+        Integer testInteger = new Integer(7);
+        VolumeUnit testVolumeUnit = testVolumeUnitConverter.convertToEntityAttribute(testInteger);
+
+        assertTrue(testVolumeUnit instanceof Milliliter, "convertToEntityAttribute did not return a Milliliter!");
+    }
+
+    @Test
+    public void convertToLiterTest() {
+        Integer testInteger = new Integer(8);
+        VolumeUnit testVolumeUnit = testVolumeUnitConverter.convertToEntityAttribute(testInteger);
+
+        assertTrue(testVolumeUnit instanceof Liter, "convertToEntityAttribute did not return a Liter!");
+    }
+
+    @Test
     public void convertToErrorTest() {
         Integer testInteger = new Integer(10000);
         assertThrows(IndexOutOfBoundsException.class, () -> {
