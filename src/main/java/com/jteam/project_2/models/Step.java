@@ -24,7 +24,6 @@ public class Step implements Serializable {
     @JoinColumn(name = "recipe_id")
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JsonBackReference
-    @MapsId
     private Recipe recipe;
 
     @Column(name="step_desc")
