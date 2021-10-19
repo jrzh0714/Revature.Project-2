@@ -25,6 +25,6 @@ public class RecipeController {
 
     @GetMapping("/{id}")
     public Recipe getRecipe(@PathVariable int id) {
-        return (Recipe) Hibernate.unproxy(recipeService.getRecipeById(id));
+        return recipeService.getRecipeById(id);
     }
 }

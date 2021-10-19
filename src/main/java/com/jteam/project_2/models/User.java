@@ -12,9 +12,11 @@ import com.jteam.project_2.models.UserDemographic;
 
 @Table(name = "users")
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -51,10 +53,12 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private List<Recipe> userRecipeList;
 
-    /*
-    * @JsonManagedReference
-    @OneToMany
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private List<UserHistory> userHistory;
+
+    /*
+    *
     *
     * @JsonManagedReference
     @OneToMany

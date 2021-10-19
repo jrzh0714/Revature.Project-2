@@ -20,6 +20,7 @@ public class UserDemographic {
     @Column(name="user_id")
     private int id;
 
+
     @JoinColumn(name = "user_id")
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JsonBackReference

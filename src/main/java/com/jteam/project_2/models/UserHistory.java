@@ -1,5 +1,6 @@
 package com.jteam.project_2.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -12,15 +13,30 @@ import java.util.Objects;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@IdClass(UserHistoryID.class)
 public class UserHistory implements Serializable {
 
     @Id
     @Column(name="user_id")
     private int userId;
+
+    @JoinColumn(name = "user_id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    @JsonBackReference
+    @MapsId
+    private User user;
+
     @Id
     @Column(name="recipe_id")
     private int recipeId;
+
+    @JoinColumn(name = "recipe_id")
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    @JsonBackReference
+    @MapsId
+    private Recipe recipe;
 
     @Column(name="most_recent_view")
     private Date mostRecentView;
@@ -28,6 +44,12 @@ public class UserHistory implements Serializable {
     @Column(name="cooked")
     private boolean cooked;
 
+    public String toString() {
+        return "UserHistory{" +
+                "userId=" + userId +
+                ", recipeId=" + recipeId +
+                '}';
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

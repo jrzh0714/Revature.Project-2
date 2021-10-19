@@ -2,19 +2,16 @@ package com.jteam.project_2.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.Hibernate;
-import java.util.Objects;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Table(name = "user_address")
 @Entity
-@Data
-
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserAddress {
@@ -22,10 +19,12 @@ public class UserAddress {
     @Column(name="user_id")
     private int userId;
 
+
     @JoinColumn(name = "user_id")
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JsonBackReference
     @MapsId
+    @ToString.Exclude
     private User user;
 
 
