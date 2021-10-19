@@ -43,4 +43,9 @@ public class TeaspoonTesting {
         assertEquals(3.0, newVolume.doubleValue(),0.001, "Volume wrong after unit conversion!");
         verify(mockStepIngredient).setVolumeUnit(testTeaspoon);
     }
+
+    @Test
+    public void toIntTest() {
+        assertEquals(Integer.valueOf(1), testTeaspoon.toInt());
+    }
 }

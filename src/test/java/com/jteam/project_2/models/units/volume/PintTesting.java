@@ -41,4 +41,9 @@ public class PintTesting {
         assertEquals(10, newVolume.doubleValue(),0.001, "Volume wrong after unit conversion!");
         verify(mockStepIngredient).setVolumeUnit(testPint);
     }
+
+    @Test
+    public void toIntTest() {
+        assertEquals(Integer.valueOf(4), testPint.toInt());
+    }
 }

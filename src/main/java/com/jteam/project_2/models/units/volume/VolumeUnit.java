@@ -20,4 +20,6 @@ public abstract class VolumeUnit {
         stepIngredient.setVolumeUnit(this);
     }
 
+    public abstract Integer toInt();
+
 }

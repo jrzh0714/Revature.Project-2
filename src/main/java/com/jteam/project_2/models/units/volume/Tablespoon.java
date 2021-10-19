@@ -6,4 +6,9 @@ public class Tablespoon extends VolumeUnit{
         unitName = "tablespoon";
         factor = 3;
     }
+
+    @Override
+    public Integer toInt() {
+        return 2;
+    }
 }

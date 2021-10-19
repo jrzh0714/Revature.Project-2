@@ -5,4 +5,9 @@ public class Pint extends VolumeUnit{
         unitName = "pint";
         factor = 96;
     }
+
+    @Override
+    public Integer toInt() {
+        return 4;
+    }
 }

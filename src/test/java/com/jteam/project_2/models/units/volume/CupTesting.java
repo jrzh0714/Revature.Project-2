@@ -42,4 +42,9 @@ public class CupTesting {
         assertEquals(1.0, newVolume.doubleValue(),0.001, "Volume wrong after unit conversion!");
         verify(mockStepIngredient).setVolumeUnit(testCup);
     }
+
+    @Test
+    public void toIntTest() {
+        assertEquals(Integer.valueOf(3), testCup.toInt());
+    }
 }

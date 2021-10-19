@@ -5,4 +5,9 @@ public class Gallon extends VolumeUnit{
         unitName = "gallon";
         factor = 768;
     }
+
+    @Override
+    public Integer toInt() {
+        return 6;
+    }
 }

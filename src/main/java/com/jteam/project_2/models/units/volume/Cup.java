@@ -5,4 +5,9 @@ public class Cup extends VolumeUnit{
         unitName = "cup";
         factor = 48;
     }
+
+    @Override
+    public Integer toInt() {
+        return 3;
+    }
 }
