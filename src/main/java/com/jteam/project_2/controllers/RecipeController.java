@@ -6,18 +6,15 @@ import com.jteam.project_2.services.RecipeService;
 import com.jteam.project_2.services.UserService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "recipes")
 public class RecipeController {
-
     private RecipeService recipeService;
 
     @Autowired
@@ -30,8 +27,23 @@ public class RecipeController {
         return recipeService.getRecipeById(id);
     }
 
-    @GetMapping("/{containing}")
+    @GetMapping("/containing/{containing}")
     public List<Recipe> getRecipesByName(@PathVariable String containing){
         return recipeService.searchRecipesByName(containing);
+    }
+
+    @GetMapping("/starting/{startingWith}")
+    public List<Recipe> getRecipesByStartingString(@PathVariable String startingWith){
+        return recipeService.searchRecipesByStartingString(startingWith);
+    }
+
+    @GetMapping("/trending")
+    public List<Recipe> getTrendingRecipes(){
+        return recipeService.searchRecipesByTrending();
+    }
+
+    @PostMapping("/submitRecipe")
+    public Recipe submitRecipe(@RequestBody Recipe toSubmit){
+        return recipeService.save(toSubmit);
     }
 }
