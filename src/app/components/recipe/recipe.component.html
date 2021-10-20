@@ -1,0 +1,42 @@
+<div *ngIf="recipe" class="recipecontainer">
+
+    <div class="title">
+        <span class="recipeusername">user's</span>
+        <span class="recipename">{{recipe.name}}</span>
+    </div>
+    <div class="recipecontent">
+        <div class = "imgcontainer">
+            <div class="recipeimage">
+
+            </div>
+        </div>
+        <div class= "recipedesc">
+            <div class="recipemeta">
+                <span>Rating: {{recipe.rating}}</span>
+                <span>Likes: {{recipe.likes}}</span>
+
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id augue scelerisque purus id etiam mi lectus. Id cum egestas vel fermentum. Pellentesque sapien sodales molestie at malesuada. Augue faucibus pulvinar tellus orci.</p>
+
+        </div>
+        
+    </div>
+    <div class="recipeingredients">
+        <div>
+            <h2>Ingredients</h2>
+
+            <span></span>
+            <p></p>
+
+        </div>
+    </div>
+    <div class="recipesteps">
+        <h2>Steps</h2>
+        <div class="steps" *ngFor="let step of recipe.recipeSteps">
+            <span>{{step.stepNumber}}.</span>
+            <span>{{step.stepDescription}}</span>
+
+        </div>
+    </div>
+
+</div>

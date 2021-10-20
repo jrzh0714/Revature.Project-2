@@ -1,0 +1,14 @@
+.searchbar {
+  width: 100%;
+  min-height: 30px;
+  border-radius: 11px;
+  background-color: #e8e5e5;
+  border: 0px;
+  padding: 5px 15px 5px 15px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.searchbar:focus {
+  outline: none;
+}
