@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "recipes")
 public class RecipeController {
@@ -26,5 +28,10 @@ public class RecipeController {
     @GetMapping("/{id}")
     public Recipe getRecipe(@PathVariable int id) {
         return recipeService.getRecipeById(id);
+    }
+
+    @GetMapping("/{containing}")
+    public List<Recipe> getRecipesByName(@PathVariable String containing){
+        return recipeService.searchRecipesByName(containing);
     }
 }

@@ -1,9 +1,7 @@
 package com.jteam.project_2.services;
 
 import com.jteam.project_2.models.Recipe;
-import com.jteam.project_2.models.User;
 import com.jteam.project_2.repositories.RecipeRepository;
-import com.jteam.project_2.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +26,9 @@ public class RecipeService {
 
     public Recipe save(Recipe recipe){
         return recipeRepository.save(recipe);
+    }
+
+    public List<Recipe> searchRecipesByName(String name){
+        return recipeRepository.getRecipesByNameContainingOrderByLikes(name);
     }
 }
