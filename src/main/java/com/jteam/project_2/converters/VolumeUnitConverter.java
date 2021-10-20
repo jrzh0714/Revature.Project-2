@@ -9,12 +9,16 @@ import javax.persistence.Converter;
 public class VolumeUnitConverter implements AttributeConverter<VolumeUnit, Integer> {
     @Override
     public Integer convertToDatabaseColumn(VolumeUnit volumeUnit) {
+        if (volumeUnit == null)
+            return null;
         return volumeUnit.toInt();
     }
 
     @Override
     public VolumeUnit convertToEntityAttribute(Integer newVolumeUnitIndex) {
         VolumeUnit newVolumeUnit;
+        if (newVolumeUnitIndex == null)
+            return null;
         int i = newVolumeUnitIndex.intValue();
         switch(i) {
             case 1:

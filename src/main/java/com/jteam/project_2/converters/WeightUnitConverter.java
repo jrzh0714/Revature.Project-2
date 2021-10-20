@@ -10,12 +10,16 @@ public class WeightUnitConverter implements AttributeConverter<WeightUnit, Integ
 
     @Override
     public Integer convertToDatabaseColumn(WeightUnit weightUnit) {
+        if (weightUnit == null)
+            return null;
         return weightUnit.toInt();
     }
 
     @Override
     public WeightUnit convertToEntityAttribute(Integer newWeightUnitIndex) {
         WeightUnit newWeightUnit;
+        if (newWeightUnitIndex == null)
+            return null;
         int i = newWeightUnitIndex.intValue();
         switch(i) {
             case 1:

@@ -1,12 +1,14 @@
 package com.jteam.project_2.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "steps")
@@ -25,6 +27,10 @@ public class Step implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JsonBackReference
     private Recipe recipe;
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "step",fetch = FetchType.LAZY)
+    private List<StepIngredient> stepIngredients;
 
     @Column(name="step_desc")
     private String stepDescription;
