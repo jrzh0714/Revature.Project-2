@@ -68,6 +68,10 @@ public class UserController {
     public User getUserByUsername(@PathVariable String username){
         return userService.getUserByUsername(username);
     }
+    @GetMapping("/usernameById/{id}")
+    public String getUsernameById(@PathVariable int id){
+        return userService.getUsernameById(id);
+    }
 
     @GetMapping("/userExists/{username}")
     public boolean userExists(@PathVariable String username){
