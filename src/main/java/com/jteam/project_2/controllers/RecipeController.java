@@ -1,15 +1,9 @@
 package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.models.Recipe;
-import com.jteam.project_2.models.User;
 import com.jteam.project_2.services.RecipeService;
-import com.jteam.project_2.services.UserService;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -45,5 +39,10 @@ public class RecipeController {
     @PostMapping("/submitRecipe")
     public Recipe submitRecipe(@RequestBody Recipe toSubmit){
         return recipeService.save(toSubmit);
+    }
+
+    @PostMapping("/image/{recipe}")
+    public Byte[] getRecipeImage(@PathVariable String recipe){
+        return recipeService.getImageForRecipe(recipe);
     }
 }
