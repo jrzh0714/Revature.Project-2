@@ -25,7 +25,10 @@ public class Recipe implements Serializable {
     @Column(name="recipe_id")
     private int id;
 
-    @JoinColumn(name = "user_id")
+    @Column(name="user_id")
+    private int userId;
+
+    @JoinColumn(name = "user_id",insertable = false, updatable = false )
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JsonBackReference
     private User user;
