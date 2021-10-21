@@ -67,6 +67,15 @@ public class RecipeService {
         return recipeRepository.getRecipesByPublishDateAfterAndLikesGreaterThanOrderByLikes(targetDate,5);
     }
 
+    /**
+     * Return a list of recipes that have more than a certain rating, ordered by rating
+     * @param rating the minimum acceptable rating
+     * @return a list of recipes that have more than the specified rating
+     */
+    public List<Recipe> getRecipesByRating(double rating){
+        return recipeRepository.getRecipesByRatingGreaterThanEqualOrderByRating(rating);
+    }
+
     public Byte[] getImageForRecipe(String recipe) {
         String url = "https://bing-image-search1.p.rapidapi.com/images/search?q=" + recipe;
         Object queryResult = this.restTemplate.getForObject(url,Object.class);

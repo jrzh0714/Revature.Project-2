@@ -41,8 +41,15 @@ public class RecipeController {
         return recipeService.save(toSubmit);
     }
 
+    @GetMapping("/byRating/{rating}")
+    public List<Recipe> getRecipesAboveRating(@PathVariable double rating){
+        return recipeService.getRecipesByRating(rating);
+    }
+
+    /*
     @PostMapping("/image/{recipe}")
     public Byte[] getRecipeImage(@PathVariable String recipe){
         return recipeService.getImageForRecipe(recipe);
     }
+     */
 }
