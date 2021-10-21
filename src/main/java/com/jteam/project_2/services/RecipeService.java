@@ -76,6 +76,10 @@ public class RecipeService {
         return recipeRepository.getRecipesByRatingGreaterThanEqualOrderByRating(rating);
     }
 
+    public List<Recipe> getRecipesByState(String state){
+        return recipeRepository.getRecipesByUser_Address_StateOrderByRating(state);
+    }
+
     public Byte[] getImageForRecipe(String recipe) {
         String url = "https://bing-image-search1.p.rapidapi.com/images/search?q=" + recipe;
         Object queryResult = this.restTemplate.getForObject(url,Object.class);

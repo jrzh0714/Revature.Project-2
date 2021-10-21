@@ -13,4 +13,5 @@ public interface RecipeRepository extends JpaRepository<Recipe,Integer> {
     List<Recipe> getRecipesByNameStartingWith(String start);
     List<Recipe> getRecipesByPublishDateAfterAndLikesGreaterThanOrderByLikes(Date start, int likes);
     List<Recipe> getRecipesByRatingGreaterThanEqualOrderByRating(double rating);
+    List<Recipe> getRecipesByUser_Address_StateOrderByRating(String state);
 }

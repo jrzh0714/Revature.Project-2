@@ -46,6 +46,11 @@ public class RecipeController {
         return recipeService.getRecipesByRating(rating);
     }
 
+    @GetMapping("/byState/{state}")
+    public List<Recipe> getRecipesByState(@PathVariable String state){
+        return recipeService.getRecipesByState(state);
+    }
+
     /*
     @PostMapping("/image/{recipe}")
     public Byte[] getRecipeImage(@PathVariable String recipe){
