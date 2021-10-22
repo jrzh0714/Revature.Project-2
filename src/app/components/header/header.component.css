@@ -17,25 +17,17 @@ nav {
   margin-right: 10%;
 }
 nav a {
-  width: 5%;
-
   padding: 5px 10px;
+  position: relative;
+
+  top: -3px;
   text-decoration: none;
   margin-top: 10px;
-  display: inline-block;
-  background-color: #eee;
+  width: 100px;
+  height: 50px;
   border-radius: 4px;
   letter-spacing: -0.5px;
-}
-
-nav a:visited,
-a:link {
-  color: #607d8b;
-}
-nav a:hover {
-  color: #039be5;
-  background-color: #cfd8dc;
-}
-nav a.active {
-  color: #039be5;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("src\assets\logo.png");
 }

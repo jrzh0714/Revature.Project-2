@@ -1,7 +1,7 @@
 .recipecontainer {
   width: 60%;
   max-width: 850px;
-  margin-top: 50px;
+  margin-top: 10px;
   background-color: #f8f8f8;
   font-family: "Work Sans", sans-serif;
   padding: 100px 120px 50px 120px;
@@ -11,14 +11,50 @@
 }
 .title {
   display: flex;
+  flex-direction: row;
+}
+.titleleft {
+  display: flex;
   flex-direction: column;
+  width: 85%;
+}
+.titleright mat-icon {
+  font-size: 50px;
+  padding: 5px;
+  position: relative;
+  right: 13px;
+  margin-bottom: 10px;
+}
+
+.heart:hover {
+  color: #e73535;
+  cursor: pointer;
+}
+.titleright span {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px;
+}
+.titleright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
 }
 .recipeusername {
   width: 100%;
   padding: 5px;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 25px;
   letter-spacing: -0.5px;
+  color: #9c9c9c;
+  transition: 0.3s;
+  height: 20px;
+}
+.recipeusername:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 .recipemeta span {
   padding: 5px 10px 5px 10px;
@@ -27,18 +63,18 @@
   border-radius: 7px;
 }
 .recipename {
-  margin-top: 5px;
   font-weight: 700;
   font-size: 50px;
   color: #525252;
   width: 100%;
-  padding: 5px;
-  letter-spacing: -0.5px;
+  padding: 2px;
+  letter-spacing: -1px;
+  line-height: 40px;
 }
 .recipecontent {
   display: flex;
   flex-direction: row;
-  margin-top: 40px;
+  margin-top: 20px;
   font-weight: 700;
 }
 .imgcontainer {
@@ -50,15 +86,17 @@
   border-radius: 15px;
 }
 .recipeimage {
-  background-clip: content-box;
+  background-color: rgb(77, 77, 77);
+  background-clip: border-box;
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 7px;
   min-height: 400px;
-  height: 100%;
   min-width: 260px;
+  height: 100%;
 
-  background-image: url("https://natashaskitchen.com/wp-content/uploads/2020/03/Pan-Seared-Steak-4.jpg");
+  background-image: url("https://www.eitanbernath.com/wp-content/uploads/2020/02/WIld-Mushroom-Impossible-Cheeseburger-LOW-RES.jpg");
 }
 .recipedesc {
   margin-left: 5%;
@@ -100,4 +138,51 @@
 }
 .steps span:first-child {
   margin-right: 10px;
+}
+
+.recipeheaderrow {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+
+  width: 75%;
+  padding-top: 50px;
+  font-family: "Work Sans", sans-serif;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+}
+
+.headerleft {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+
+.headerright {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.headerright span:first-child {
+  position: relative;
+  top: 7px;
+}
+.headerright span:nth-child(2) {
+  margin-left: 5px;
+  margin-right: 10px;
+}
+.headerright span:nth-child(3) {
+  color: #b6b6b6;
+  font-weight: 600;
+}
+
+.recipemeta span:first-child mat-icon {
+  position: relative;
+  top: 6px;
 }

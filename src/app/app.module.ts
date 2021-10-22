@@ -14,6 +14,9 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { HomeComponent } from './views/home/home.component';
+import { MatIconModule } from '@angular/material/icon';
+import { UserViewComponent } from './views/user/user-view.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +29,17 @@ import { HomeComponent } from './views/home/home.component';
     LoginComponent,
     RegisterComponent,
     RecipeComponent,
-    HomeComponent
+    HomeComponent,
+    UserViewComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule
 
   ],
   providers: [],
