@@ -1,19 +1,13 @@
 package com.jteam.project_2.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.jteam.project_2.models.User;
 import com.jteam.project_2.models.UserDemographic;
 import com.jteam.project_2.services.UserService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -68,5 +62,19 @@ public class UserController {
     @GetMapping("/all")
     public String getAllUsers(){
         return userService.findAll().toString();
+    }
+
+    @GetMapping("/userByUsername/{username}")
+    public User getUserByUsername(@PathVariable String username){
+        return userService.getUserByUsername(username);
+    }
+    @GetMapping("/usernameById/{id}")
+    public String getUsernameById(@PathVariable int id){
+        return userService.getUsernameById(id);
+    }
+
+    @GetMapping("/userExists/{username}")
+    public boolean userExists(@PathVariable String username){
+        return userService.userExists(username);
     }
 }
