@@ -9,13 +9,21 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class FeaturedComponent implements OnInit {
 
-  featured!: Recipe;
+  featured!: Recipe[];
 
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+    this.getTrending().then((response)=>{
+      this.featured = response;
+    
+      console.log(this.featured);
 
+    });
   }
 
+  async getTrending() {
+    return await this.recipeService.getTrending().toPromise();
+  }
 
 }

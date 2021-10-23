@@ -24,5 +24,8 @@ export class RecipeService {
   getRecipe(id: number): Observable<Recipe> {
     return this.http.get<Recipe>(`${this.baseUrl}/${id}`, this.httpOptions);
   }
+  getTrending(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.baseUrl}/trending`, this.httpOptions);
+  }
 
 }

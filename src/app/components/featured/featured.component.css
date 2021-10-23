@@ -1,0 +1,46 @@
+.featuredcontainer {
+  margin-top: 20px;
+  padding: 50px;
+  width: 100%;
+  font-family: "Work Sans", sans-serif;
+}
+.featuredrecipe {
+  width: 50%;
+
+  padding: 40px;
+  border-radius: 10px;
+}
+.featuredrecipedetail {
+  display: flex;
+  flex-direction: row;
+}
+.recipeimgcontainer {
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+
+  background-color: #e4ecf6;
+}
+.recipeinfocontainer {
+  padding: 30px;
+  margin-left: 20px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  font-size: 30px;
+  color: #3e3c3c;
+  letter-spacing: -0.5px;
+  line-height: 33px;
+}
+
+.featuredtitle h1 {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  margin-bottom: 50px;
+  font-size: 40px;
+  color: #525252;
+  letter-spacing: -1px;
+}
+
+.carousel-cell {
+  background-color: blanchedalmond;
+}

@@ -17,6 +17,10 @@ import { HomeComponent } from './views/home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { UserViewComponent } from './views/user/user-view.component';
 import { UserComponent } from './components/user/user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
+
 
 @NgModule({
   declarations: [
@@ -39,7 +43,10 @@ import { UserComponent } from './components/user/user.component';
     BrowserAnimationsModule,
     MatInputModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IvyCarouselModule
 
   ],
   providers: [],
