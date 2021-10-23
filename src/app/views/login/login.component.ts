@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+import { AuthService } from 'src/app/services/auth.service';
+import { LoginAttempt } from 'src/app/models/loginattempt'; 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
+        private authservice: AuthService,
         private router: Router
     ) {
     }
@@ -39,6 +41,11 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         console.log("username: "+this.f.username.value);
         console.log("pw: "+this.f.password.value);
+        var credentials:LoginAttempt = {
+          username:this.f.username.value,
+          password:this.f.password.value
+        };
+        this.authservice.login(credentials);
 
     }
 }

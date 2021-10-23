@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,8 @@ export class RegisterComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private userService:UserService
     ) {
     }
 
@@ -43,6 +46,19 @@ export class RegisterComponent implements OnInit {
         console.log("firstname: "+this.f.firstname.value);
         console.log("lastname: "+this.f.lastname.value);
 
+        var newuser:User = {
+            username:this.f.username.value,
+            hash:this.f.password.value,
+            email:this.f.email.value,
+            firstname:this.f.firstname.value,
+            lastname:this.f.lastname.value,
+            avatarURL:'',
+            userRecipeList:[]
+          };
+          this.userService.register(newuser).toPromise()
+          .then((res) =>{
+            console.log(res);
+          });
 
     }
 }

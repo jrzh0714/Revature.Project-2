@@ -28,4 +28,9 @@ export class UserService {
   getUsernameById(id: number): Observable<String>  {
     return this.http.get(`${this.baseUrl}/usernameById/${id}`,  {responseType: 'text'});
   }
+
+  register(newuser: User): Observable<User> {
+    console.log(newuser);
+    return this.http.post<User>(`http://localhost:8001/register`,newuser,this.httpOptions);
+  }
 }
