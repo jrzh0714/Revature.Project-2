@@ -38,7 +38,7 @@ public class User {
     @Column(name="avatar_URL")
     private String avatarURL;
 
-    @Column(name="hash")
+    @Column(name="user_password")
     private String hash;
 
     @JsonManagedReference
