@@ -13,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +29,7 @@ import java.util.Date;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = "login")
+@RequestMapping(path = "")
 public class LoginController {
 
     private UserService userService;
@@ -44,13 +46,17 @@ public class LoginController {
     }
 
     @PostMapping(path="/login",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public JWT login(@RequestBody LoginAttempt loginAttempt) {
+    public ResponseEntity<JWT> login(@RequestBody LoginAttempt loginAttempt) {
         User loginUser = userService.getUserByUsername(loginAttempt.getUsername());
+        ResponseEntity<JWT> jwtresponse = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 
         if(checkPassword(loginUser, loginAttempt.getPassword())) {
-            return generateToken(loginAttempt.getUsername());
+            JWT token = generateToken(loginAttempt.getUsername());
+
+            jwtresponse = new ResponseEntity<>(token, HttpStatus.OK);
+
         }
-        return null;
+        return jwtresponse;
     }
 
     public JWT generateToken(String username) {

@@ -30,7 +30,7 @@ public class Recipe implements Serializable {
 
     @JoinColumn(name = "user_id",insertable = false, updatable = false )
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value="userrecipe")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe", fetch = FetchType.LAZY)
