@@ -63,4 +63,9 @@ public class RecipeController {
     public Recipe editRecipe(@RequestBody Recipe recipe){
         return recipeService.save(recipe);
     }
+
+    @PutMapping("/like/{id}")
+    public Recipe likeRecipe(@PathVariable Integer id){
+        return recipeService.likeRecipe(recipeService.getRecipeById(id));
+    }
 }

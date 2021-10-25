@@ -99,6 +99,11 @@ public class RecipeService {
         return recipeRepository.getRecipesByIngredient(ingredient);
     }
 
+    public Recipe likeRecipe(Recipe recipe){
+        recipe.setLikes(recipe.getLikes() + 1);
+        return recipeRepository.save(recipe);
+    }
+
     public Byte[] getImageForRecipe(String recipe) {
         String url = "https://bing-image-search1.p.rapidapi.com/images/search?q=" + recipe;
         Object queryResult = this.restTemplate.getForObject(url,Object.class);
