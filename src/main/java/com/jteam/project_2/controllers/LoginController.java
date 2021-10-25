@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -45,7 +46,7 @@ public class LoginController {
     @PostMapping(path="/login",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JWTHandler> login(@RequestBody LoginAttempt loginAttempt) {
         User loginUser = userService.getUserByUsername(loginAttempt.getUsername());
-        ResponseEntity<JWT> jwtresponse = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        ResponseEntity<JWTHandler> jwtresponse = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 
         if(checkPassword(loginUser, loginAttempt.getPassword())) {
             JWTHandler token = new JWTHandler(loginAttempt.getUsername());

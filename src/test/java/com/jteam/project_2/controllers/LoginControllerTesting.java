@@ -6,6 +6,8 @@ import com.jteam.project_2.models.User;
 import com.jteam.project_2.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.lang.reflect.Field;
 
@@ -35,7 +37,7 @@ public class LoginControllerTesting {
         testLogin.setUsername("Dave");
         testLogin.setPassword("abc123");
 
-        assertNotNull(testLoginController.login(testLogin),"Login Failed!");
+        assertNotEquals(new ResponseEntity<>(null, HttpStatus.NOT_FOUND), testLoginController.login(testLogin),"Login Failed!");
     }
 
     @Test
@@ -44,7 +46,7 @@ public class LoginControllerTesting {
         testLogin.setUsername("Dave");
         testLogin.setPassword("wrong");
 
-        assertNull(testLoginController.login(testLogin),"Bad login Succeeded!");
+        assertEquals(new ResponseEntity<>(null, HttpStatus.NOT_FOUND), testLoginController.login(testLogin),"Bad login Succeeded!");
     }
 
     @Test
@@ -53,6 +55,6 @@ public class LoginControllerTesting {
         testLogin.setUsername("Daveeee");
         testLogin.setPassword("abc123");
 
-        assertNull(testLoginController.login(testLogin),"Bad login Succeeded!");
+        assertEquals(new ResponseEntity<>(null, HttpStatus.NOT_FOUND), testLoginController.login(testLogin), "Bad login Succeeded!");
     }
 }

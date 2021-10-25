@@ -1,7 +1,7 @@
 package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.controllers.post_objects.LoginAttempt;
-import com.jteam.project_2.controllers.reply_objects.JWT;
+import com.jteam.project_2.controllers.reply_objects.JWTHandler;
 import com.jteam.project_2.models.User;
 import com.jteam.project_2.models.UserDemographic;
 import com.jteam.project_2.services.UserService;
