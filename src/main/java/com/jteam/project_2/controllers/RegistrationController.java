@@ -42,6 +42,7 @@ public class RegistrationController {
     @PostMapping(path="/register",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> register(@RequestBody User newuser) {
         User newregistration = newuser;
+        System.out.println(newregistration);
         String hashedpw = BCrypt.hashpw(newregistration.getHash(),BCrypt.gensalt());
         newregistration.setHash(hashedpw);
         userService.save(newregistration);
