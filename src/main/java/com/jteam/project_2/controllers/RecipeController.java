@@ -1,6 +1,8 @@
 package com.jteam.project_2.controllers;
 
+import com.jteam.project_2.models.Ingredient;
 import com.jteam.project_2.models.Recipe;
+import com.jteam.project_2.models.User;
 import com.jteam.project_2.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,10 +53,13 @@ public class RecipeController {
         return recipeService.getRecipesByState(state);
     }
 
-    /*
-    @PostMapping("/image/{recipe}")
-    public Byte[] getRecipeImage(@PathVariable String recipe){
-        return recipeService.getImageForRecipe(recipe);
+    @PostMapping("/byIngredient")
+    public List<Recipe> getRecipesByIngredient(@RequestBody Ingredient ingredient){
+        return recipeService.searchRecipesByIngredient(ingredient);
     }
-     */
+
+    @PutMapping("/editRecipe")
+    public Recipe editRecipe(@RequestBody Recipe recipe){
+        return recipeService.save(recipe);
+    }
 }
