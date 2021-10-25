@@ -24,7 +24,7 @@ public class UserHistory implements Serializable {
 
     @JoinColumn(name = "user_id")
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value="userhistory")
     @MapsId
     private User user;
 

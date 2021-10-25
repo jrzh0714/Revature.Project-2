@@ -9,8 +9,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +26,7 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 
 @RestController
-@RequestMapping(path = "login")
+@RequestMapping(path = "")
 public class LoginController {
 
     private UserService userService;
@@ -37,13 +43,16 @@ public class LoginController {
     }
 
     @PostMapping(path="/login",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public JWTHandler login(@RequestBody LoginAttempt loginAttempt) {
+    public ResponseEntity<JWTHandler> login(@RequestBody LoginAttempt loginAttempt) {
         User loginUser = userService.getUserByUsername(loginAttempt.getUsername());
+        ResponseEntity<JWT> jwtresponse = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 
         if(checkPassword(loginUser, loginAttempt.getPassword())) {
-            return new JWTHandler(loginAttempt.getUsername());
+            JWTHandler token = new JWTHandler(loginAttempt.getUsername());
+
+            jwtresponse = new ResponseEntity<>(token, HttpStatus.OK);
         }
-        return null;
+        return jwtresponse;
     }
 
     public boolean checkPassword(User user, String password) {

@@ -23,7 +23,7 @@ public class UserDemographic {
 
     @JoinColumn(name = "user_id")
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value="userdemographic")
     @MapsId
     private User user;
 

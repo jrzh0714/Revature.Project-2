@@ -22,7 +22,7 @@ public class UserAddress {
 
     @JoinColumn(name = "user_id")
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value="useraddress")
     @MapsId
     @ToString.Exclude
     private User user;
