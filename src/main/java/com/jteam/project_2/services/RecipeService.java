@@ -95,8 +95,8 @@ public class RecipeService {
         return recipeRepository.getRecipesByUser_Address_StateOrderByRating(state);
     }
 
-    public List<Recipe> searchRecipesByIngredient(Ingredient ingredient){
-        return recipeRepository.getRecipesByRecipeSteps_StepIngredients_Ingredient(ingredient);
+    public List<Recipe> searchRecipesByIngredient(String ingredient){
+        return recipeRepository.getRecipesByIngredient(ingredient);
     }
 
     public Byte[] getImageForRecipe(String recipe) {

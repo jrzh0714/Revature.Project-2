@@ -5,6 +5,7 @@ import com.jteam.project_2.models.Recipe;
 import com.jteam.project_2.models.User;
 import com.jteam.project_2.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class RecipeController {
         return recipeService.searchRecipesByTrending();
     }
 
-    @PostMapping("/submitRecipe")
+    @PostMapping(value = "/submitRecipe", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public Recipe submitRecipe(@RequestBody Recipe toSubmit){
         return recipeService.save(toSubmit);
     }
@@ -53,8 +54,8 @@ public class RecipeController {
         return recipeService.getRecipesByState(state);
     }
 
-    @PostMapping("/byIngredient")
-    public List<Recipe> getRecipesByIngredient(@RequestBody Ingredient ingredient){
+    @GetMapping("/byIngredient/{ingredient}")
+    public List<Recipe> getRecipesByIngredient(@PathVariable String ingredient){
         return recipeService.searchRecipesByIngredient(ingredient);
     }
 
