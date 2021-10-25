@@ -1,6 +1,8 @@
 package com.jteam.project_2.controllers.reply_objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jteam.project_2.services.UserService;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -42,7 +44,26 @@ public class JWTHandler {
         } catch(SignatureException e) {
             System.out.println("JWT Incorrect!");       // TODO - Add logging
             username = null;
+        } catch(ExpiredJwtException e) {
+            System.out.println("JWT expired!");
+            username = null;
         }
         return username;
     }
+
+    /**
+     * Checks whether a JWT is valid.
+     * @param userService Used to check for the username.
+     * @return True if the JWT is valid, false otherwise.
+     */
+    @JsonIgnore
+    public boolean checkTokenValid(UserService userService) {
+        String username = getUsername();
+        if(username != null && userService.userExists(username)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
