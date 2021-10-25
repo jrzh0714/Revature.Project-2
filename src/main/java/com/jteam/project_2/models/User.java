@@ -38,22 +38,26 @@ public class User {
     @Column(name="avatar_URL")
     private String avatarURL;
 
-    @Column(name="hash")
+    @Column(name="user_password")
     private String hash;
 
-    @JsonManagedReference
+    @JsonIgnore
+    @JsonManagedReference(value="userdemographic")
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private UserDemographic demographic;
 
-    @JsonManagedReference
+    @JsonIgnore
+    @JsonManagedReference(value="useraddress")
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private UserAddress address;
 
-    @JsonManagedReference
+    @JsonIgnore
+    @JsonManagedReference(value="userrecipe")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private List<Recipe> userRecipeList;
 
-    @JsonManagedReference
+    @JsonIgnore
+    @JsonManagedReference(value="userhistory")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private List<UserHistory> userHistory;
 

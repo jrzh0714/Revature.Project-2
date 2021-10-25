@@ -23,6 +23,10 @@ public class UserService {
         return userRepository.getById(id);
     }
 
+    public String getUsernameById(int id){
+        return userRepository.getById(id).getUsername();
+    }
+
     public List<User> findAll(){
         return userRepository.findAll();
     }
