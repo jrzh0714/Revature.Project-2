@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Recipe } from '../models/recipe';
+import { RecipeStep } from '../models/recipeStep';
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +31,12 @@ export class RecipeService {
   addRecipe(newrecipe:any): Observable<Recipe[]> {
     return this.http.post<Recipe[]>(`${this.baseUrl}/submitRecipe`, newrecipe,this.httpOptions);
   }
-
   getRecipesByName(searchterm:string): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(`${this.baseUrl}/containing/${searchterm}`,this.httpOptions);
   }
 
-  addRecipeSteps(newrecipesteps:any): Observable<Recipe[]> {
-    return this.http.post<Recipe[]>(`${this.baseUrl}/submitRecipeSteps`, newrecipesteps,this.httpOptions);
+  addRecipeSteps(newrecipesteps:any): Observable<RecipeStep[]> {
+    return this.http.post<RecipeStep[]>(`${this.baseUrl}/submitRecipeSteps`, newrecipesteps,this.httpOptions);
   }
 
 

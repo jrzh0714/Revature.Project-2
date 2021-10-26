@@ -58,7 +58,8 @@ export class RecipeformComponent implements OnInit {
       this.step +=1;
       var newStep={
         stepDescription:"",
-        stepNumber:this.step
+        stepNumber:this.step,
+        recipe_id:0
       }
       this.recipeSteps.push(newStep);
     }
@@ -87,7 +88,7 @@ export class RecipeformComponent implements OnInit {
         console.log(newrecipe);
 
         this.recipeService.addRecipe(newrecipe).toPromise()
-        .then((res) =>{
+        .then((res:any) =>{
           console.log(res);
         });
 
