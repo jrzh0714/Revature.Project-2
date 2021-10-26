@@ -27,7 +27,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable int id) {
-        return (User) Hibernate.unproxy(userService.getUserById(id));
+        return userService.getUserById(id);
     }
 
     @GetMapping("/{id}/{gender}")

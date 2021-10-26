@@ -1,6 +1,7 @@
 package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.models.Recipe;
+import com.jteam.project_2.models.Step;
 import com.jteam.project_2.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -40,6 +41,10 @@ public class RecipeController {
     @PostMapping(path="/submitRecipe",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Recipe submitRecipe(@RequestBody Recipe toSubmit){
         System.out.println(toSubmit);
+        List<Step> steps = toSubmit.getRecipeSteps();
+        for (Step step : steps) {
+            step.setRecipe(toSubmit);
+        }
         return recipeService.save(toSubmit);
     }
 

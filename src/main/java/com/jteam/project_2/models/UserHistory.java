@@ -1,6 +1,9 @@
 package com.jteam.project_2.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -16,6 +19,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @IdClass(UserHistoryID.class)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class UserHistory implements Serializable {
 
     @Id
@@ -24,7 +29,7 @@ public class UserHistory implements Serializable {
 
     @JoinColumn(name = "user_id")
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference(value="userhistory")
+    @JsonBackReference
     @MapsId
     private User user;
 

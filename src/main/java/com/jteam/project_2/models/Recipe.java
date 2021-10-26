@@ -19,7 +19,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
+
 public class Recipe implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -31,12 +32,11 @@ public class Recipe implements Serializable {
 
     @JoinColumn(name = "user_id",insertable = false, updatable = false )
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference(value="userrecipe")
+    @JsonBackReference
     private User user;
 
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonManagedReference(value="steps")
     private List<Step> recipeSteps;
 
 
