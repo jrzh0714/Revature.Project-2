@@ -4,6 +4,8 @@ import com.jteam.project_2.models.User;
 import com.jteam.project_2.models.UserDemographic;
 import com.jteam.project_2.services.UserService;
 import org.hibernate.Hibernate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,9 +18,9 @@ import java.util.List;
 @RequestMapping(path = "users")
 public class UserController {
 
+    Logger logger = LoggerFactory.getLogger(UserController.class);
+
     private UserService userService;
-
-
 
     @Autowired
     public UserController(UserService userService) {
@@ -32,12 +34,15 @@ public class UserController {
 
     @GetMapping("/{id}/{gender}")
     public User changeUserGender(@PathVariable int id,@PathVariable int gender) {
+        logger.trace("Enter changeUserGender");
+        logger.trace("id = " + id + " gender = " + gender);
         UserDemographic test = new UserDemographic();
         test.setId(id);
         test.setGender(gender);
         User changedUser = userService.getUserById(id);
         test.setUser(changedUser);
         changedUser.setDemographic(test);
+        logger.trace("End changeUserGender");
         return userService.save(changedUser);
     }
 
@@ -48,6 +53,8 @@ public class UserController {
      */
     @PostMapping(path="/updateDemographics",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> changeUserDemographics(@RequestBody UserDemographic userDemographic){
+        logger.trace("Begin changeUserDemographics");
+        logger.trace("userDemographic = " + userDemographic);
         User user = userService.getUserById(userDemographic.getId());
         ResponseEntity<User> returnuser = new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
 
@@ -55,9 +62,9 @@ public class UserController {
             user.setDemographic(userDemographic);
             userService.save(user);
             returnuser = new ResponseEntity<>(user, HttpStatus.OK);
-
         }
 
+        logger.trace("End changeUserDemographics");
         return returnuser;
     }
 
