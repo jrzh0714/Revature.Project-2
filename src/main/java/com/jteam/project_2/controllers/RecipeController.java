@@ -67,4 +67,9 @@ public class RecipeController {
     public Recipe likeRecipe(@PathVariable Integer id){
         return recipeService.likeRecipe(recipeService.getRecipeById(id));
     }
+
+    @PutMapping("/view/{id}")
+    public Recipe viewRecipe(@PathVariable Integer id){
+        return recipeService.viewRecipe(recipeService.getRecipeById(id));
+    }
 }
