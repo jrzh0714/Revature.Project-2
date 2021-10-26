@@ -1,9 +1,6 @@
 package com.jteam.project_2.services;
 
-import com.jteam.project_2.models.Ingredient;
-import com.jteam.project_2.models.Recipe;
-import com.jteam.project_2.models.Step;
-import com.jteam.project_2.models.StepIngredient;
+import com.jteam.project_2.models.*;
 import com.jteam.project_2.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -103,6 +100,10 @@ public class RecipeService {
     public Recipe viewRecipe(Recipe recipe){
         recipe.setViewCount(recipe.getViewCount() + 1);
         return recipeRepository.save(recipe);
+    }
+
+    public List<Recipe> getLikedRecipes(User user){
+        return recipeRepository.getRecipesByLikersOrderByRating(user);
     }
 
 /*    public Byte[] getImageForRecipe(String recipe) {

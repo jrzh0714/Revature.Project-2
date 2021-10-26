@@ -59,6 +59,12 @@ public class User {
 
     @JsonIgnore
     @JsonManagedReference
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "liked_recipes",joinColumns = @JoinColumn(name="user_id"),inverseJoinColumns = @JoinColumn(name="recipe_id"))
+    private List<Recipe> likedRecipes;
+
+    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user",fetch = FetchType.LAZY)
     private List<UserHistory> userHistory;
 
