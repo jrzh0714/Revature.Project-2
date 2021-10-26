@@ -70,11 +70,17 @@ public class UserController {
     public User getUserByUsername(@PathVariable String username){
         return userService.getUserByUsername(username);
     }
+
     @GetMapping("/usernameById/{id}")
     public String getUsernameById(@PathVariable int id){
         return userService.getUsernameById(id);
     }
 
+    /**
+     * Checks whether a user with the given username is registered in the system
+     * @param username the username to check for
+     * @return whether the username is already taken
+     */
     @GetMapping("/userExists/{username}")
     public boolean userExists(@PathVariable String username){
         return userService.userExists(username);

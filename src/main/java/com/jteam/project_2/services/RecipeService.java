@@ -7,11 +7,7 @@ import com.jteam.project_2.models.StepIngredient;
 import com.jteam.project_2.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URL;
@@ -24,18 +20,18 @@ public class RecipeService {
     private RecipeRepository recipeRepository;
 
     //This is for making outgoing HTTP requests to the Bing Images API
-    private final RestTemplate restTemplate;
+    //private final RestTemplate restTemplate;
 
-    private List<Recipe> allRecipes;
+    //private List<Recipe> allRecipes;
 
     @Autowired
     public RecipeService(RecipeRepository recipeRepository, RestTemplateBuilder restTemplateBuilder) {
         this.recipeRepository = recipeRepository;
 
         //For outgoing HTTP requests
-        this.restTemplate = restTemplateBuilder.build();
+        //this.restTemplate = restTemplateBuilder.build();
 
-        allRecipes = findAll();
+        //allRecipes = findAll();
     }
 
     public Recipe getRecipeById(int id){
@@ -104,7 +100,7 @@ public class RecipeService {
         return recipeRepository.save(recipe);
     }
 
-    public Byte[] getImageForRecipe(String recipe) {
+/*    public Byte[] getImageForRecipe(String recipe) {
         String url = "https://bing-image-search1.p.rapidapi.com/images/search?q=" + recipe;
         Object queryResult = this.restTemplate.getForObject(url,Object.class);
         System.out.println(queryResult);
@@ -120,5 +116,5 @@ public class RecipeService {
             }
         }
         return myIngredients;
-    }
+    }*/
 }
