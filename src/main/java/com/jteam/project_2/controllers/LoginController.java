@@ -1,9 +1,8 @@
 package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.controllers.post_objects.LoginAttempt;
-import com.jteam.project_2.controllers.reply_objects.JWT;
+import com.jteam.project_2.controllers.reply_objects.JWTHandler;
 import com.jteam.project_2.models.User;
-import com.jteam.project_2.models.UserDemographic;
 import com.jteam.project_2.services.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "")
@@ -46,33 +44,16 @@ public class LoginController {
     }
 
     @PostMapping(path="/login",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JWT> login(@RequestBody LoginAttempt loginAttempt) {
+    public ResponseEntity<JWTHandler> login(@RequestBody LoginAttempt loginAttempt) {
         User loginUser = userService.getUserByUsername(loginAttempt.getUsername());
-        ResponseEntity<JWT> jwtresponse = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        ResponseEntity<JWTHandler> jwtresponse = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 
         if(checkPassword(loginUser, loginAttempt.getPassword())) {
-            JWT token = generateToken(loginAttempt.getUsername());
+            JWTHandler token = new JWTHandler(loginAttempt.getUsername());
 
             jwtresponse = new ResponseEntity<>(token, HttpStatus.OK);
-
         }
         return jwtresponse;
-    }
-
-    public JWT generateToken(String username) {
-        SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
-
-        String newToken = Jwts.builder().setSubject(username).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + tokenLife * 1000)).signWith(key, SignatureAlgorithm.HS256).compact();
-
-        JWT newJWT = new JWT();
-        newJWT.setToken(newToken);
-
-        return newJWT;
-    }
-
-    public String getJwtUsername(JWT jwt) {
-        return Jwts.parserBuilder().setSigningKey(secret).build().parseClaimsJws(jwt.getToken()).getBody().getSubject();
     }
 
     public boolean checkPassword(User user, String password) {
