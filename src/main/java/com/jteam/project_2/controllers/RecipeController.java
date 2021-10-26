@@ -1,8 +1,6 @@
 package com.jteam.project_2.controllers;
 
-import com.jteam.project_2.models.Ingredient;
 import com.jteam.project_2.models.Recipe;
-import com.jteam.project_2.models.User;
 import com.jteam.project_2.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
