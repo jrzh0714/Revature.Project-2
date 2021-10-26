@@ -2,6 +2,7 @@ package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.models.Ingredient;
 import com.jteam.project_2.models.Recipe;
+import com.jteam.project_2.models.Step;
 import com.jteam.project_2.models.User;
 import com.jteam.project_2.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,9 @@ public class RecipeController {
         return recipeService.searchRecipesByTrending();
     }
 
-    @PostMapping(value = "/submitRecipe", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/submitRecipe",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Recipe submitRecipe(@RequestBody Recipe toSubmit){
+        System.out.println(toSubmit);
         return recipeService.save(toSubmit);
     }
 
