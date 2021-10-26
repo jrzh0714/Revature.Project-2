@@ -1,8 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-
+import { AfterViewInit, ElementRef} from '@angular/core';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -10,9 +9,20 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
   searchterm!:string;
-  constructor(private router:Router) { }
+  constructor(private router:Router,private elementRef:ElementRef) { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.querySelector('.searchbar')
+                                .addEventListener('keyup', this.onEnter.bind(this));
+  }
+
+  onEnter(event:any) {
+    if (event.key === "Enter") {
+      this.router.navigate(['/search/'+this.searchterm]);
+    }
   }
 
 }

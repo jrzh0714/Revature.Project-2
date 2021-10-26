@@ -4,13 +4,13 @@
   max-width: 700px;
 }
 app-userinfo {
-  width: 10%;
+  width: 20%;
 }
 nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   min-height: 80px;
   width: 80%;
   margin-left: 10%;
