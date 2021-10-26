@@ -92,8 +92,8 @@ public class RecipeService {
         return recipeRepository.getRecipesByIngredient(ingredient);
     }
 
-    public Recipe likeRecipe(Recipe recipe){
-        recipe.setLikes(recipe.getLikes() + 1);
+    public Recipe likeRecipe(Recipe recipe, int increment){
+        recipe.setLikes(recipe.getLikes() + increment);
         return recipeRepository.save(recipe);
     }
 
