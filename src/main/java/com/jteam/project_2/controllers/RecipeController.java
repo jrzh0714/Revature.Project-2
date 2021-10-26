@@ -37,8 +37,9 @@ public class RecipeController {
         return recipeService.searchRecipesByTrending();
     }
 
-    @PostMapping(value = "/submitRecipe", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/submitRecipe",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Recipe submitRecipe(@RequestBody Recipe toSubmit){
+        System.out.println(toSubmit);
         return recipeService.save(toSubmit);
     }
 

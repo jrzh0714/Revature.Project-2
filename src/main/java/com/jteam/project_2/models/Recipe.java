@@ -1,8 +1,8 @@
 package com.jteam.project_2.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -22,6 +22,7 @@ import java.util.Objects;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Recipe implements Serializable {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="recipe_id")
     private int id;
 
@@ -33,6 +34,7 @@ public class Recipe implements Serializable {
     @JsonBackReference(value="userrecipe")
     private User user;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Step> recipeSteps;
@@ -44,6 +46,7 @@ public class Recipe implements Serializable {
     @Column(name="rating")
     private double rating;
 
+    @JsonProperty("thumbnail")
     @Column(name="thumbnail")
     private byte[] thumbnail;
 
@@ -66,7 +69,6 @@ public class Recipe implements Serializable {
                 ", recipeSteps=" + recipeSteps +
                 ", name='" + name + '\'' +
                 ", rating=" + rating +
-                ", thumbnail=" + Arrays.toString(thumbnail) +
                 ", likes=" + likes +
                 ", viewCount=" + viewCount +
                 ", publishDate=" + publishDate +

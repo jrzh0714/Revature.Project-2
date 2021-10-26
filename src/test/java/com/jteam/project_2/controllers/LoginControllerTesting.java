@@ -1,11 +1,13 @@
 package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.controllers.post_objects.LoginAttempt;
-import com.jteam.project_2.controllers.reply_objects.JWT;
+import com.jteam.project_2.controllers.reply_objects.JWTHandler;
 import com.jteam.project_2.models.User;
 import com.jteam.project_2.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.lang.reflect.Field;
 
@@ -30,28 +32,12 @@ public class LoginControllerTesting {
     }
 
     @Test
-    public void generateTokenTest() {
-        JWT testToken = testLoginController.generateToken("testuser");
-        String checkToken = testLoginController.getJwtUsername(testToken);
-        assertEquals("testuser", checkToken, "Output token incorrect!");
-    }
-
-    @Test
-    public void checkSecret() throws NoSuchFieldException, IllegalAccessException {
-        Class cls = testLoginController.getClass();
-        Field field = cls.getDeclaredField("secret");
-        field.setAccessible(true);
-
-        assertNotNull((String)field.get(testLoginController), "null secret key!");
-    }
-
-    @Test
     public void loginTestSuccess() {
         LoginAttempt testLogin = new LoginAttempt();
         testLogin.setUsername("Dave");
         testLogin.setPassword("abc123");
 
-        assertNotNull(testLoginController.login(testLogin),"Login Failed!");
+        assertNotEquals(new ResponseEntity<>(null, HttpStatus.NOT_FOUND), testLoginController.login(testLogin),"Login Failed!");
     }
 
     @Test
@@ -60,7 +46,7 @@ public class LoginControllerTesting {
         testLogin.setUsername("Dave");
         testLogin.setPassword("wrong");
 
-        assertNull(testLoginController.login(testLogin),"Bad login Succeeded!");
+        assertEquals(new ResponseEntity<>(null, HttpStatus.NOT_FOUND), testLoginController.login(testLogin),"Bad login Succeeded!");
     }
 
     @Test
@@ -69,6 +55,6 @@ public class LoginControllerTesting {
         testLogin.setUsername("Daveeee");
         testLogin.setPassword("abc123");
 
-        assertNull(testLoginController.login(testLogin),"Bad login Succeeded!");
+        assertEquals(new ResponseEntity<>(null, HttpStatus.NOT_FOUND), testLoginController.login(testLogin), "Bad login Succeeded!");
     }
 }
