@@ -3,6 +3,7 @@ package com.jteam.project_2.controllers;
 import com.jteam.project_2.models.Recipe;
 import com.jteam.project_2.models.Step;
 import com.jteam.project_2.services.RecipeService;
+import com.jteam.project_2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +13,12 @@ import java.util.List;
 @RequestMapping(path = "recipes")
 public class RecipeController {
     private RecipeService recipeService;
+    private UserService userService;
 
     @Autowired
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService, UserService userService) {
         this.recipeService = recipeService;
+        this.userService = userService;
     }
 
     @GetMapping("/{id}")
@@ -76,5 +79,10 @@ public class RecipeController {
     @PutMapping("/view/{id}")
     public Recipe viewRecipe(@PathVariable Integer id){
         return recipeService.viewRecipe(recipeService.getRecipeById(id));
+    }
+
+    @GetMapping("/liked/{userId}")
+    public List<Recipe> getFavorites(@PathVariable Integer userId){
+        return recipeService.getLikedRecipes(userService.getUserById(userId));
     }
 }

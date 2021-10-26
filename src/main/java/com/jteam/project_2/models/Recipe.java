@@ -39,6 +39,9 @@ public class Recipe implements Serializable {
     @JsonManagedReference(value="steps")
     private List<Step> recipeSteps;
 
+    @ManyToMany(mappedBy = "likedRecipes")
+    @JsonIgnore
+    private List<User> likers;
 
     @Column(name="recipe_name")
     private String name;
