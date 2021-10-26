@@ -6,6 +6,9 @@ import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { Observable } from 'rxjs';
+import * as base64 from "byte-base64";
+import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-recipe',
@@ -15,12 +18,15 @@ import { Observable } from 'rxjs';
 export class RecipeComponent implements OnInit {
 
   recipe!: Recipe|null;
+  imageSrc!:string;
   convertedDate!:String;
   recipeAuthorUsername!: String;
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.getRecipe().then((response)=>{
@@ -32,10 +38,17 @@ export class RecipeComponent implements OnInit {
       console.log(this.recipe);
       console.log(this.recipeAuthorUsername);
 
+      if (this.recipe){
+        this.imageSrc = "data:image/png;base64,"+this.recipe.thumbnail;
+      }
+
     });
 
   }
 
+  back(){
+    this.location.back();
+  }
   async getRecipe() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 

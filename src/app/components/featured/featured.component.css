@@ -4,13 +4,10 @@
   width: 100%;
   font-family: "Work Sans", sans-serif;
 }
-.featuredrecipe {
-  width: 50%;
 
-  padding: 40px;
-  border-radius: 10px;
+.featuredrecipe {
 }
-.featuredrecipedetail {
+.carousel-cell .featuredrecipedetail {
   display: flex;
   flex-direction: row;
 }
@@ -18,6 +15,9 @@
   width: 200px;
   height: 300px;
   border-radius: 10px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 
   background-color: #e4ecf6;
 }
@@ -42,5 +42,6 @@
 }
 
 .carousel-cell {
-  background-color: blanchedalmond;
+  padding: 40px;
+  background-color: rgb(243, 243, 243);
 }

@@ -1,0 +1,9 @@
+<div *ngIf="searchResult" class="searchresults" >
+    <div *ngFor="let item of searchResult" class="result"
+    routerLink="/recipe/{{item.id}}" routerLinkActive="router-link-active">
+        <h2>
+            {{item.name}}
+
+        </h2>
+    </div>
+</div>

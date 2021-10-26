@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
           password:this.f.password.value
         };
         this.authservice.login(credentials);
+        setTimeout(() =>{
+            console.log("login redirect");
+            window.location.href = '';
+          },1000);
 
     }
 }

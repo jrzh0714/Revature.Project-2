@@ -1,12 +1,12 @@
 import { RecipeStep } from 'src/app/models/recipeStep';
 
 export interface Recipe {
-    id: number;
+    id: number |null;
     userId:number;
     name: string;
     rating: number;
     recipeSteps:RecipeStep[];
-    thumbnail: number;
+    thumbnail: string;
     likes: number;
     viewCount: number;
     publishDate:Date;

@@ -19,7 +19,10 @@ import { UserViewComponent } from './views/user/user-view.component';
 import { UserComponent } from './components/user/user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
-
+import { CreateComponent } from './views/create/create.component';
+import { RecipeformComponent } from './components/recipeform/recipeform.component';
+import { SearchViewComponent } from './views/search/search.view.component';
+import { Logout } from './views/logout.view/logout.view.component';
 
 
 @NgModule({
@@ -35,7 +38,11 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     RecipeComponent,
     HomeComponent,
     UserViewComponent,
-    UserComponent
+    UserComponent,
+    CreateComponent,
+    RecipeformComponent,
+    SearchViewComponent,
+    Logout
   ],
   imports: [
     BrowserModule,
@@ -46,7 +53,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    
 
   ],
   providers: [],

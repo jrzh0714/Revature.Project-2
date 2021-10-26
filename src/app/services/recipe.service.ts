@@ -27,5 +27,17 @@ export class RecipeService {
   getTrending(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(`${this.baseUrl}/trending`, this.httpOptions);
   }
+  addRecipe(newrecipe:any): Observable<Recipe[]> {
+    return this.http.post<Recipe[]>(`${this.baseUrl}/submitRecipe`, newrecipe,this.httpOptions);
+  }
+
+  getRecipesByName(searchterm:string): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.baseUrl}/containing/${searchterm}`,this.httpOptions);
+  }
+
+  addRecipeSteps(newrecipesteps:any): Observable<Recipe[]> {
+    return this.http.post<Recipe[]>(`${this.baseUrl}/submitRecipeSteps`, newrecipesteps,this.httpOptions);
+  }
+
 
 }

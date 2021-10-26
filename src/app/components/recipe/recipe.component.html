@@ -1,5 +1,5 @@
 <div *ngIf="recipe" class="recipeheaderrow">
-    <div class="headerleft">
+    <div class="headerleft" (click)="back()">
         <mat-icon>arrow_back_ios</mat-icon>
         <span>back</span>
     </div>
@@ -28,7 +28,7 @@
     </div>
     <div class="recipecontent">
         <div class = "imgcontainer">
-            <div class="recipeimage">
+            <div class="recipeimage" [ngStyle]="{ 'background-image': 'url(' + imageSrc + ')'}" >
 
             </div>
         </div>

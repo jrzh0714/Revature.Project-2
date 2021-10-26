@@ -8,7 +8,6 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-
   baseUrl: string = `http://localhost:8001/users`;
 
   httpOptions = {
@@ -19,6 +18,7 @@ export class UserService {
   };
 
   constructor(private http: HttpClient) {}
+
 
 
   getUserByUsername(username: string): Observable<User> {

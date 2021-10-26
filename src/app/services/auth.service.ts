@@ -5,9 +5,8 @@ import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { LoginAttempt } from '../models/loginattempt';
 import { Router } from '@angular/router';
-
-
-
+import { UserService } from './user.service';
+import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,17 +22,28 @@ export class AuthService {
     }),
   };
 
-  constructor(private http: HttpClient, private router:Router) {}
+  constructor(private http: HttpClient,private userService: UserService, private router:Router) {}
 
 
   login(loginattempt: LoginAttempt): void {
     this.http
-    .post<LoginAttempt>(`${this.baseUrl}login`,loginattempt,this.httpOptions)
+    .post<any>(`${this.baseUrl}login`,loginattempt,this.httpOptions)
     .toPromise()
-    .then((res)=>
-      console.log(res)
+    .then((response)=>
+      {
+        var token = response.token;
+      sessionStorage.setItem('access-token',token)
+      if(token != null){
+        sessionStorage.setItem('username',loginattempt.username)
+        this.userService.getUserByUsername(loginattempt.username).toPromise().then((res)=>{
+          console.log(res);
+
+        });
+
+      }
+      }
     );
-      //sessionStorage.setItem('access-token',JSON.stringify(res.token))
+    
   }
 
 
