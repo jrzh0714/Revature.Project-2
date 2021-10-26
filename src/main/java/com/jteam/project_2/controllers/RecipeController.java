@@ -2,6 +2,7 @@ package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.models.Recipe;
 import com.jteam.project_2.models.Step;
+import com.jteam.project_2.models.User;
 import com.jteam.project_2.services.RecipeService;
 import com.jteam.project_2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,9 +72,35 @@ public class RecipeController {
         return recipeService.save(recipe);
     }
 
-    @PutMapping("/like/{id}")
-    public Recipe likeRecipe(@PathVariable Integer id){
-        return recipeService.likeRecipe(recipeService.getRecipeById(id));
+    @PutMapping("/like/{id}/{userID}")
+    public Recipe likeRecipe(@PathVariable Integer id,@PathVariable Integer userID){
+        //Get the user who liked the thing
+        User current = userService.getUserById(userID);
+
+        //Get the list of recipes that they like
+        List<Recipe> liked = current.getLikedRecipes();
+        System.out.println(liked);
+
+        //Get the recipe to be liked
+        Recipe newLike = recipeService.getRecipeById(id);
+
+        //Check whether the user has already liked this recipe
+        boolean likedAlready = liked.contains(newLike);
+
+        //If they have already liked it, remove it from their liked recipes
+        if(likedAlready){
+            liked.remove(newLike);
+            current.setLikedRecipes(liked);
+            newLike.getLikers().remove(current);
+        }
+        //Otherwise, add it to their liked recipes
+        else {
+            liked.add(newLike);
+            current.setLikedRecipes(liked);
+            newLike.getLikers().add(current);
+        }
+
+        return recipeService.likeRecipe(newLike,likedAlready?-1:1);
     }
 
     @PutMapping("/view/{id}")
@@ -85,4 +112,7 @@ public class RecipeController {
     public List<Recipe> getFavorites(@PathVariable Integer userId){
         return recipeService.getLikedRecipes(userService.getUserById(userId));
     }
+
+    //Get possible ingredients
+    //Get units of measure
 }
