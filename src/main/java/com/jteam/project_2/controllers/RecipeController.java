@@ -154,7 +154,7 @@ public class RecipeController {
             current.setLikedRecipes(liked);
             newLike.getLikers().add(current);
         }
-
+        logger.debug(newLike.toString());
         return recipeService.likeRecipe(newLike,likedAlready?-1:1);
     }
 

@@ -32,7 +32,7 @@ public class Step implements Serializable {
     private Recipe recipe;
 
     @JsonManagedReference(value="stepingredients")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "step",fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "step",fetch = FetchType.LAZY)
     private List<StepIngredient> stepIngredients;
 
     @Column(name="step_desc")

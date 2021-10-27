@@ -1,13 +1,17 @@
 package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.models.Recipe;
+import com.jteam.project_2.models.User;
 import com.jteam.project_2.services.RecipeService;
 import com.jteam.project_2.services.UserService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.internal.junit.JUnitRule;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +26,7 @@ public class RecipeControllerTesting {
     private RecipeService mockRecipeService;
     private UserService mockUserService;
     private Recipe mockRecipe;
+    private User mockUser;
     private List<Recipe> mockList;
 
     @BeforeEach
@@ -29,6 +34,7 @@ public class RecipeControllerTesting {
         mockRecipeService = mock(RecipeService.class);
         mockUserService = mock(UserService.class);
         mockRecipe = mock(Recipe.class);
+        mockUser = mock(User.class);
         mockList = mock(List.class);
         testRecipeController = new RecipeController(mockRecipeService, mockUserService);
     }
@@ -103,11 +109,58 @@ public class RecipeControllerTesting {
     }
 
     @Test
-    public void likeRecipeTest() {
-        when(mockRecipeService.getRecipeById(5)).thenReturn(mockRecipe);
-        when(mockRecipeService.likeRecipe(mockRecipe, 1)).thenReturn(mockRecipe);
-        Recipe testRecipe = testRecipeController.likeRecipe(5, 5);
-        verify(mockRecipeService).likeRecipe(mockRecipe, 1);
-        assertSame(mockRecipe, testRecipe, "Correct Recipe not returned!");
+    @MockitoSettings(strictness = Strictness.LENIENT)
+    public void likeRecipeIncTest() {
+
+        int idNum = 5;
+        int increment = 1;
+
+        List<User> mockLikers = mock(List.class);
+
+        when(mockRecipeService.getRecipeById(idNum)).thenReturn(mockRecipe);
+        when(mockRecipeService.likeRecipe(mockRecipe, increment)).thenReturn(mockRecipe);
+
+        when(mockUserService.getUserById(idNum)).thenReturn(mockUser);
+
+        when(mockRecipe.getLikers()).thenReturn(mockLikers);
+
+        when(mockUser.getLikedRecipes()).thenReturn(mockList);
+
+        when(mockList.contains(mockRecipe)).thenReturn(false);
+
+        Recipe testRecipe = testRecipeController.likeRecipe(idNum, idNum);
+
+        verify(mockRecipeService).likeRecipe(mockRecipe, increment);
+        verify(mockList).add(mockRecipe);
+        verify(mockUser).setLikedRecipes(mockList);
+        verify(mockLikers).add(mockUser);
+    }
+
+    @Test
+    @MockitoSettings(strictness = Strictness.LENIENT)
+    public void likeRecipeDecTest() {
+
+        int idNum = 5;
+        int increment = 1;
+
+        List<User> mockLikers = mock(List.class);
+
+        when(mockRecipeService.getRecipeById(idNum)).thenReturn(mockRecipe);
+        when(mockRecipeService.likeRecipe(mockRecipe, increment)).thenReturn(mockRecipe);
+
+        when(mockUserService.getUserById(idNum)).thenReturn(mockUser);
+
+        when(mockRecipe.getLikers()).thenReturn(mockLikers);
+
+        when(mockUser.getLikedRecipes()).thenReturn(mockList);
+
+        when(mockList.contains(mockRecipe)).thenReturn(true);
+
+        Recipe testRecipe = testRecipeController.likeRecipe(idNum, idNum);
+
+        verify(mockRecipeService).likeRecipe(mockRecipe, (increment * -1));
+        verify(mockList).remove(mockRecipe);
+        verify(mockUser).setLikedRecipes(mockList);
+        verify(mockLikers).remove(mockUser);
     }
 }
