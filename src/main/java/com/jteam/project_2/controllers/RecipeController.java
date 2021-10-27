@@ -73,11 +73,6 @@ public class RecipeController {
      */
     @PostMapping(path="/submitRecipe",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Recipe submitRecipe(@RequestBody Recipe toSubmit){
-        System.out.println(toSubmit);
-        List<Step> steps = toSubmit.getRecipeSteps();
-        for (Step step : steps) {
-            step.setRecipe(toSubmit);
-        }
         return recipeService.save(toSubmit);
     }
 
