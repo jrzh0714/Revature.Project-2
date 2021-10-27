@@ -31,14 +31,28 @@ public class RecipeService {
         //allRecipes = findAll();
     }
 
+    /**
+     * Gets the exact recipe asked for from the database
+     * @param id the unique numeric identifier of the record in the database
+     * @return a recipe
+     */
     public Recipe getRecipeById(int id){
         return recipeRepository.getById(id);
     }
 
+    /**
+     * Returns a list that contains all of the recipes in the database
+     * @return all of the recipes
+     */
     public List<Recipe> findAll(){
         return recipeRepository.findAll();
     }
 
+    /**
+     * Saves a recipe
+     * @param recipe the recipe to save
+     * @return the recipe that was saved
+     */
     public Recipe save(Recipe recipe){
         return recipeRepository.save(recipe);
     }
@@ -88,20 +102,41 @@ public class RecipeService {
         return recipeRepository.getRecipesByUser_Address_StateOrderByRating(state);
     }
 
+    /**
+     * Gets recipes that have a specified ingredient
+     * @param ingredient the name of the ingredient that we are searching for recipes for
+     * @return a list of recipes
+     */
     public List<Recipe> searchRecipesByIngredient(String ingredient){
         return recipeRepository.getRecipesByIngredient(ingredient);
     }
 
+    /**
+     * Add a recipe to a user's list of favorite recipes and add the user to the recipe's list of likers
+     * @param recipe the recipe that is being liked
+     * @param increment the amount to increase the number of likes (can be -1 or +1)
+     * @return the recipe that is being liked
+     */
     public Recipe likeRecipe(Recipe recipe, int increment){
         recipe.setLikes(recipe.getLikes() + increment);
         return recipeRepository.save(recipe);
     }
 
+    /**
+     * Officially view a recipe
+     * @param recipe the recipe that is being viewed
+     * @return the recipe that is being viewed
+     */
     public Recipe viewRecipe(Recipe recipe){
         recipe.setViewCount(recipe.getViewCount() + 1);
         return recipeRepository.save(recipe);
     }
 
+    /**
+     * Get all of the recipes that a user has liked, ordered by rating
+     * @param user the user whose favorite recipes are being retrieved
+     * @return the list of the user's favorite recipes
+     */
     public List<Recipe> getLikedRecipes(User user){
         return recipeRepository.getRecipesByLikersOrderByRating(user);
     }

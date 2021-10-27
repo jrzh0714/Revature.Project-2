@@ -16,6 +16,10 @@ public class IngredientService {
         this.ingredientRepository = ingredientRepository;
     }
 
+    /**
+     * Retrieves a list containing all of the ingredients in the database
+     * @return a list of all of the ingredients in the database
+     */
     public List<Ingredient> findAll(){
         return ingredientRepository.findAll();
     }
