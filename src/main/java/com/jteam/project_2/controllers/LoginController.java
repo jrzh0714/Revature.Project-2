@@ -43,6 +43,11 @@ public class LoginController {
         secret = System.getenv("Feed_JWT_Secret");
     }
 
+    /**
+     * Checks login info and returns a JWT if accepted.
+     * @param loginAttempt Holds the username and password of the user.
+     * @return A ResponseEntity containing a JWT.
+     */
     @PostMapping(path="/login",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JWTHandler> login(@RequestBody LoginAttempt loginAttempt) {
         User loginUser = userService.getUserByUsername(loginAttempt.getUsername());
@@ -56,6 +61,12 @@ public class LoginController {
         return jwtresponse;
     }
 
+    /**
+     * Checks a password and user combo.
+     * @param user The user that is receiving the login request.
+     * @param password The input password.
+     * @return True if password correct, false if incorrect.
+     */
     public boolean checkPassword(User user, String password) {
         if (user != null) {
             String hashedPassword = user.getHash();

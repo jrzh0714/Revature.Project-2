@@ -2,6 +2,7 @@ package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.models.Recipe;
 import com.jteam.project_2.services.RecipeService;
+import com.jteam.project_2.services.UserService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,15 +20,17 @@ public class RecipeControllerTesting {
 
     private RecipeController testRecipeController;
     private RecipeService mockRecipeService;
+    private UserService mockUserService;
     private Recipe mockRecipe;
     private List<Recipe> mockList;
 
     @BeforeEach
     public void init() {
         mockRecipeService = mock(RecipeService.class);
+        mockUserService = mock(UserService.class);
         mockRecipe = mock(Recipe.class);
         mockList = mock(List.class);
-        testRecipeController = new RecipeController(mockRecipeService);
+        testRecipeController = new RecipeController(mockRecipeService, mockUserService);
     }
 
     @Test
@@ -102,9 +105,9 @@ public class RecipeControllerTesting {
     @Test
     public void likeRecipeTest() {
         when(mockRecipeService.getRecipeById(5)).thenReturn(mockRecipe);
-        when(mockRecipeService.likeRecipe(mockRecipe)).thenReturn(mockRecipe);
-        Recipe testRecipe = testRecipeController.likeRecipe(5);
-        verify(mockRecipeService).likeRecipe(mockRecipe);
+        when(mockRecipeService.likeRecipe(mockRecipe, 1)).thenReturn(mockRecipe);
+        Recipe testRecipe = testRecipeController.likeRecipe(5, 5);
+        verify(mockRecipeService).likeRecipe(mockRecipe, 1);
         assertSame(mockRecipe, testRecipe, "Correct Recipe not returned!");
     }
 }
