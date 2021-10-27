@@ -23,7 +23,6 @@ export class SearchViewComponent implements OnInit {
 
   async getResult() {
     const searchterm = String(this.route.snapshot.paramMap.get('searchterm'));
-    //TODO: replace null with service call
 
     if (searchterm) {
 

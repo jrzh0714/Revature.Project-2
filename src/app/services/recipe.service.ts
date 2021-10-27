@@ -35,8 +35,11 @@ export class RecipeService {
     return this.http.get<Recipe[]>(`${this.baseUrl}/containing/${searchterm}`,this.httpOptions);
   }
 
-  addRecipeSteps(newrecipesteps:any): Observable<RecipeStep[]> {
-    return this.http.post<RecipeStep[]>(`${this.baseUrl}/submitRecipeSteps`, newrecipesteps,this.httpOptions);
+  likeRecipe(id:number|null,userID:number):Observable<Recipe>{
+    return this.http.put<Recipe>(`${this.baseUrl}/like/${id}/${userID}`, this.httpOptions);
+  }
+  likedRecipes(userid:number|null):Observable<Recipe[]>{
+    return this.http.get<Recipe[]>(`${this.baseUrl}/liked/${userid}`, this.httpOptions);
   }
 
 

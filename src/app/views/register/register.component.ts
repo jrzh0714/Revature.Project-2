@@ -58,7 +58,19 @@ export class RegisterComponent implements OnInit {
           this.userService.register(newuser).toPromise()
           .then((res) =>{
             console.log(res);
-          });
+            alert("New user registered.");
+
+            window.location.href = 'login';
+
+          },
+          (error)=>{
+            console.log(error);
+            setTimeout(() =>{
+              alert("Username is taken.");
+              window.location.href = 'register';
+            },1000);  
+          }
+          );
 
     }
 }

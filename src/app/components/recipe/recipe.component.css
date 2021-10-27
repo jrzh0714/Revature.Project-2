@@ -157,6 +157,10 @@
   align-items: center;
   justify-content: flex-start;
   font-size: 20px;
+  transition: 0.4s;
+}
+.headerleft:hover {
+  cursor: pointer;
 }
 
 .headerright {
@@ -183,4 +187,11 @@
 .recipemeta span:first-child mat-icon {
   position: relative;
   top: 6px;
+}
+
+.liked {
+  color: #e73535;
+}
+.liked:hover {
+  color: #ff9e9e;
 }

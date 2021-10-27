@@ -125,3 +125,27 @@
   font-weight: 600;
   letter-spacing: -0.7px;
 }
+.underline {
+  color: black;
+}
+
+.recipetitle span {
+  margin-right: 20px;
+}
+
+.recipetitle span:hover {
+  cursor: pointer;
+  color: #365224;
+  text-decoration: underline 4px solid black;
+}
+
+.userrecipe span {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  padding: 10px;
+  background-color: rgb(61, 61, 61);
+  border-radius: 10px;
+  margin-right: 10px;
+  color: white;
+}

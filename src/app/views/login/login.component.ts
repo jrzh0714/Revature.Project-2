@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginAttempt } from 'src/app/models/loginattempt'; 
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private authservice: AuthService,
+        private userService: UserService,
         private router: Router
     ) {
     }
@@ -45,11 +47,30 @@ export class LoginComponent implements OnInit {
           username:this.f.username.value,
           password:this.f.password.value
         };
-        this.authservice.login(credentials);
-        setTimeout(() =>{
-            console.log("login redirect");
-            window.location.href = '';
-          },1000);
+        this.authservice.login(credentials).toPromise().then((response:any)=>
+        {
+          var token = response.token;
+          sessionStorage.setItem('access-token',token)
+          if(token != null){
+            sessionStorage.setItem('username',credentials.username)
+            this.userService.getUserByUsername(credentials.username).toPromise().then((res)=>{
+              console.log(res);
+              setTimeout(() =>{
+                console.log("login redirect");
+                window.location.href = '';
+              },1000);
+            });
+  
+          }
+        }, (error)=>{
+          console.log(error);
+          setTimeout(() =>{
+            alert("Login invalid, try again.");
+            window.location.href = 'login';
+          },1000);  
+        }
+      );;
+        
 
     }
 }

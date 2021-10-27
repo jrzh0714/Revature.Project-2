@@ -17,6 +17,7 @@ import { RecipeStep } from 'src/app/models/recipeStep';
 
 export class RecipeformComponent implements OnInit {
     recipeForm!: FormGroup;
+    user_id!:number;
     loading = false;
     submitted = false;
     returnUrl!: string;
@@ -40,14 +41,29 @@ export class RecipeformComponent implements OnInit {
             stepdesc: ['', Validators.required],
             recipeimage: ['', Validators.required],
             recipediff: ['', Validators.required]
+            
 
-
+        });
+        this.getUserByUsername(sessionStorage.getItem("username")).then((response:any)=>{
+          this.user_id = response.user_id;
+          console.log(this.user_id);
         });
         console.log(moment(new Date()).toString());
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
+    async getUserByUsername(username:string|null) {
+  
+      if (username) {
+  
+        return await this.userService.getUserByUsername(username).toPromise();
+      } else {
+        console.log("no username");
+  
+        return null;
+      }
+    }
 
 
     // convenience getter for easy access to form fields
@@ -59,7 +75,7 @@ export class RecipeformComponent implements OnInit {
       var newStep={
         stepDescription:"",
         stepNumber:this.step,
-        recipe_id:0
+        stepIngredients:[]
       }
       this.recipeSteps.push(newStep);
     }
@@ -68,6 +84,25 @@ export class RecipeformComponent implements OnInit {
       this.recipeSteps.pop();
 
     }
+    addnewingredient(stepnum:number){
+      console.log(stepnum);
+      var newIngredient={
+        ingredientId:1,
+        ingredientname:null,
+        weight:null,
+        weightUnit:null,
+        volume:null,
+        volumeUnit:null
+      }
+      this.recipeSteps[stepnum-1].stepIngredients.push(newIngredient);
+      console.log(this.recipeSteps[stepnum-1]);
+    }
+    removeingredient(stepnum:number){
+      console.log(stepnum);
+      this.recipeSteps[stepnum-1].stepIngredients.pop();
+
+      console.log(this.recipeSteps[stepnum-1]);
+    }
     onSubmit() {
         console.log("recipename: "+this.f.recipename.value);
         console.log("stepdesc: "+this.f.stepdesc.value);
@@ -75,7 +110,7 @@ export class RecipeformComponent implements OnInit {
 
         console.log("recipediff: "+this.f.recipediff.value);
         var newrecipe = {
-          userId:2,
+          userId:this.user_id,
           name: this.f.recipename.value,
           rating: 0,
           recipeSteps:this.recipeSteps,
@@ -90,6 +125,10 @@ export class RecipeformComponent implements OnInit {
         this.recipeService.addRecipe(newrecipe).toPromise()
         .then((res:any) =>{
           console.log(res);
+          window.location.href = 'recipe/'+res.id;
+
+        }, (error)=>{
+          alert("Please fill out all required fields.");  
         });
 
     }

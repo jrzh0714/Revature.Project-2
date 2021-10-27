@@ -37,6 +37,23 @@
         
                 <h1>Step {{item.stepNumber}}</h1>
                 <div class="form-group">
+                    <label for="Ingredients">Ingredients</label>
+                        <div class="stepIngredients" *ngFor="let ingredient of item.stepIngredients">
+                            <input type="text" placeholder="ex. Salt"  [value]="ingredient.ingredientname" [(ngModel)]="ingredient.ingredientname" [ngModelOptions]="{standalone: true}"class="form-control" />
+                            <input type="text" placeholder="ex. 1"  [value]="ingredient.weight" [(ngModel)]="ingredient.weight" [ngModelOptions]="{standalone: true}"class="form-control" />
+                            <input type="text" placeholder="ex. Gram"  [value]="ingredient.weightUnit" [(ngModel)]="ingredient.weightUnit" [ngModelOptions]="{standalone: true}"class="form-control" />
+                            <input type="text" placeholder="ex. 1"  [value]="ingredient.volume" [(ngModel)]="ingredient.volume" [ngModelOptions]="{standalone: true}"class="form-control"  />
+                            <input type="text" placeholder="ex. Cup"  [value]="ingredient.volumeUnit" [(ngModel)]="ingredient.volumeUnit" [ngModelOptions]="{standalone: true}"class="form-control" />
+
+                        </div>
+                        <div class="addingredient" (click)="addnewingredient(item.stepNumber)">
+                            <mat-icon >add</mat-icon><span> Add Ingredient</span>
+            
+                        </div>
+                        <div class="removeredient" (click)="removeingredient(item.stepNumber)">
+                            <mat-icon >remove</mat-icon><span> Remove Ingredient</span>
+            
+                        </div>
                     <label for="Description">Description</label>
                     <textarea  type="text" [value]="item.stepDescription" [(ngModel)]="item.stepDescription" [ngModelOptions]="{standalone: true}"class="form-control" [ngClass]="{ 'is-invalid': submitted && item.stepDescription.errors }" ></textarea>
                     <div *ngIf="submitted && item.stepDescription.errors" class="invalid-feedback">

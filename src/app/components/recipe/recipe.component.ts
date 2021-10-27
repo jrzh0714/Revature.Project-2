@@ -21,6 +21,8 @@ export class RecipeComponent implements OnInit {
   imageSrc!:string;
   convertedDate!:String;
   recipeAuthorUsername!: String;
+  currentUser!:number|null;
+  liked:boolean=false;
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
@@ -29,6 +31,24 @@ export class RecipeComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit(): void {
+    
+    this.getUserId().then((res:any)=>{
+        this.currentUser = res.user_id;
+        this.getLikedRecipes().then((response:Recipe[]|null)=>{
+          if(response){
+            response.forEach((recipe:Recipe)=>{
+              if(recipe.id == this.recipe?.id){
+                this.liked = true;
+              }
+
+            });
+
+          }
+
+        });
+
+    });
+    
     this.getRecipe().then((response)=>{
       this.recipe = response;
       if (response){
@@ -36,8 +56,6 @@ export class RecipeComponent implements OnInit {
         this.getUsernameById(response.userId);
       }
       console.log(this.recipe);
-      console.log(this.recipeAuthorUsername);
-
       if (this.recipe){
         this.imageSrc = "data:image/png;base64,"+this.recipe.thumbnail;
       }
@@ -54,7 +72,7 @@ export class RecipeComponent implements OnInit {
 
     if (id) {
       console.log(id);
-      return await this.recipeService.getRecipe(id).toPromise();
+      return this.recipeService.getRecipe(id).toPromise();
     } else {
       console.log("no id");
 
@@ -62,6 +80,18 @@ export class RecipeComponent implements OnInit {
     }
   }
 
+  async getLikedRecipes() {
+    var id = this.currentUser;
+
+    if (id) {
+      console.log(id);
+      return this.recipeService.likedRecipes(id).toPromise();
+    } else {
+      console.log("no id");
+
+      return null;
+    }
+  }
   getUsernameById(userid:number) {
     if (userid) {
       console.log(userid);
@@ -73,9 +103,46 @@ export class RecipeComponent implements OnInit {
     }
 
   }
+
+  async getUserId() {
+    var username:string|null=sessionStorage.getItem("username");
+    if (username) {
+      console.log(sessionStorage.getItem("username"));
+      return this.userService.getUserByUsername(username).toPromise();
+      
+    } else {
+      console.log("no user");
+      return null;
+    }
+
+  }
   convertDate(date:Date):string{
     let date1:Date = new Date(date);
     return date1.toLocaleDateString('en', { year: 'numeric', month: 'short', day: '2-digit' });
+  }
+
+  likerecipe(event:any){
+    console.log(event.target);
+    if (this.recipe?.id && this.currentUser){
+      this.recipeService.likeRecipe(this.recipe?.id,this.currentUser).toPromise().then(()=>{
+        this.getRecipe().then((response)=>{
+          this.recipe = response;
+          this.liked = this.liked == false ? true : false ;
+          if (response){
+            this.convertedDate = this.convertDate(response.publishDate);
+            this.getUsernameById(response.userId);
+          }
+          console.log(this.recipe);
+          if (this.recipe){
+            this.imageSrc = "data:image/png;base64,"+this.recipe.thumbnail;
+          }
+    
+        });
+      });
+      
+    } else{
+      console.log("failed to like recipe");
+    }
   }
 
 

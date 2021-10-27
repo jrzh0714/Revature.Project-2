@@ -3,14 +3,20 @@
         <h1>Today's Featured Recipes</h1>
     </div>
  
-    <carousel class="featuredlist" *ngIf="featured" [cellsToShow]="1" [width]="600" [height]="500">
+    <carousel class="featuredlist" *ngIf="featured" [cellsToShow]="1" [width]="700" [height]="400">
         <div class="featuredrecipe carousel-cell" routerLink="/recipe/{{item.id}}" routerLinkActive="router-link-active" *ngFor="let item of featured">
             <div class="featuredrecipedetail">
                 <div class="recipeimgcontainer" [ngStyle]="{ 'background-image': 'url(data:image/png;base64,' + item.thumbnail + ')'}" >
                     
                 </div>
                 <div class="recipeinfocontainer">
-                    {{item.name}}
+                    <span class="recipename">{{item.name}}</span>
+                    <div class="recipedetails">
+                        <span class="recipedate">Posted on: {{item.publishDate}}</span>
+                        <span class="recipelikes"> {{item.likes }} Likes</span>
+                        <span class="recipeviews">{{item.viewCount}} Views</span>
+                    </div>
+
                 </div>
             </div>
         </div>

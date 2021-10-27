@@ -5,8 +5,6 @@
   font-family: "Work Sans", sans-serif;
 }
 
-.featuredrecipe {
-}
 .carousel-cell .featuredrecipedetail {
   display: flex;
   flex-direction: row;
@@ -21,14 +19,35 @@
 
   background-color: #e4ecf6;
 }
-.recipeinfocontainer {
+.recipename {
+  font-family: "Work Sans", sans-serif;
+
   padding: 30px;
   margin-left: 20px;
+
   font-weight: 700;
-  margin-bottom: 50px;
-  font-size: 30px;
+  font-size: 45px;
   color: #3e3c3c;
   letter-spacing: -0.5px;
+  line-height: 33px;
+}
+.recipeinfocontainer {
+  margin-top: 50px;
+}
+.recipedetails {
+  margin-top: 40px;
+}
+.recipelikes,
+.recipedate,
+.recipeviews {
+  display: block;
+  font-family: "Work Sans", sans-serif;
+  margin-left: 70px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 25px;
+  color: #3e3c3c;
+  letter-spacing: -0.7px;
   line-height: 33px;
 }
 
@@ -43,5 +62,11 @@
 
 .carousel-cell {
   padding: 40px;
+}
+.featuredrecipe {
+  transition: 0.4s;
+}
+.featuredrecipe:hover {
+  cursor: pointer;
   background-color: rgb(243, 243, 243);
 }

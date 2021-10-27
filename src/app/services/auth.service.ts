@@ -25,24 +25,11 @@ export class AuthService {
   constructor(private http: HttpClient,private userService: UserService, private router:Router) {}
 
 
-  login(loginattempt: LoginAttempt): void {
-    this.http
-    .post<any>(`${this.baseUrl}login`,loginattempt,this.httpOptions)
-    .toPromise()
-    .then((response)=>
-      {
-        var token = response.token;
-      sessionStorage.setItem('access-token',token)
-      if(token != null){
-        sessionStorage.setItem('username',loginattempt.username)
-        this.userService.getUserByUsername(loginattempt.username).toPromise().then((res)=>{
-          console.log(res);
-
-        });
-
-      }
-      }
-    );
+  login(loginattempt: LoginAttempt): Observable<any> {
+    return this.http
+    .post<any>(`${this.baseUrl}login`,loginattempt,this.httpOptions);
+    
+    
     
   }
 

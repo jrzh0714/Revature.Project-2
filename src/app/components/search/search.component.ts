@@ -21,7 +21,8 @@ export class SearchComponent implements OnInit {
 
   onEnter(event:any) {
     if (event.key === "Enter") {
-      this.router.navigate(['/search/'+this.searchterm]);
+      window.location.href = '/search/'+this.searchterm;
+
     }
   }
 

@@ -20,9 +20,9 @@
             <span class="recipeusername" routerLink="/user/{{recipeAuthorUsername}}">{{recipeAuthorUsername}}</span>
         <span class="recipename">{{recipe.name}}</span>
         </div>
-        <div class="titleright">
-            <mat-icon class="heart">favorite_border</mat-icon>
-
+        <div class="titleright" (click)="likerecipe($event)">
+            <mat-icon class="heart liked" *ngIf="liked">favorite</mat-icon>
+            <mat-icon class="heart" *ngIf="!liked">favorite_border</mat-icon>
             <span>{{recipe.likes}}</span>
         </div>
     </div>
