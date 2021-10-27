@@ -2,6 +2,8 @@ package com.jteam.project_2.controllers;
 
 import com.jteam.project_2.models.Recipe;
 import com.jteam.project_2.services.RecipeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,8 @@ import java.util.List;
 @RequestMapping(path = "recipes")
 public class RecipeController {
     private RecipeService recipeService;
+
+    private Logger logger = LoggerFactory.getLogger(RecipeController.class);
 
     @Autowired
     public RecipeController(RecipeService recipeService) {
@@ -39,7 +43,7 @@ public class RecipeController {
 
     @PostMapping(path="/submitRecipe",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Recipe submitRecipe(@RequestBody Recipe toSubmit){
-        System.out.println(toSubmit);
+        logger.debug("toSubmit = " + toSubmit);
         return recipeService.save(toSubmit);
     }
 
