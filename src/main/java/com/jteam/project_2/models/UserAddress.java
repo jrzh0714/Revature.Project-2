@@ -2,6 +2,8 @@ package com.jteam.project_2.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -14,6 +16,8 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class UserAddress {
     @Id
     @Column(name="user_id")
@@ -22,7 +26,7 @@ public class UserAddress {
 
     @JoinColumn(name = "user_id")
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference(value="useraddress")
+    @JsonBackReference
     @MapsId
     @ToString.Exclude
     private User user;

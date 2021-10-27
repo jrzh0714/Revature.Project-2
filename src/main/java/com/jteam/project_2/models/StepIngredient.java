@@ -2,6 +2,8 @@ package com.jteam.project_2.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jteam.project_2.converters.VolumeUnitConverter;
 import com.jteam.project_2.converters.WeightUnitConverter;
 import com.jteam.project_2.models.units.volume.VolumeUnit;
@@ -19,7 +21,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @IdClass(StepIngredientID.class)
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class StepIngredient implements Serializable {       //TODO - Needs double checking for database connection
 
     @Id
@@ -27,7 +29,6 @@ public class StepIngredient implements Serializable {       //TODO - Needs doubl
 
     private int ingredientId;
 
-    @JsonBackReference
     @JoinColumn(name = "ingredient_id")
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @MapsId
@@ -37,7 +38,7 @@ public class StepIngredient implements Serializable {       //TODO - Needs doubl
     @Column(name="step_id")
     private int stepId;
 
-    @JsonBackReference
+    @JsonBackReference(value="stepingredients")
     @JoinColumn(name = "step_id")
     @ManyToOne(cascade = CascadeType.ALL, optional = false,fetch = FetchType.LAZY)
     @MapsId

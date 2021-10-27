@@ -19,8 +19,9 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Recipe implements Serializable {
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
+
+public class Recipe implements Serializable,Cloneable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="recipe_id")
@@ -31,14 +32,16 @@ public class Recipe implements Serializable {
 
     @JoinColumn(name = "user_id",insertable = false, updatable = false )
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference(value="userrecipe")
+    @JsonBackReference
     private User user;
 
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "recipe", fetch = FetchType.LAZY)
+    @JsonManagedReference(value="steps")
     private List<Step> recipeSteps;
 
+    @ManyToMany(mappedBy = "likedRecipes")
+    @JsonIgnore
+    private List<User> likers;
 
     @Column(name="recipe_name")
     private String name;

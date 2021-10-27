@@ -1,5 +1,6 @@
 package com.jteam.project_2.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Ingredient {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -21,5 +24,5 @@ public class Ingredient {
     private String name;
 
     @Column(name="image")
-    private String image;
+    private byte[] image;
 }

@@ -1,6 +1,8 @@
 package com.jteam.project_2.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -17,6 +19,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Step implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -25,10 +28,10 @@ public class Step implements Serializable {
 
     @JoinColumn(name = "recipe_id")
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference(value="steps")
     private Recipe recipe;
 
-    @JsonManagedReference
+    @JsonManagedReference(value="stepingredients")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "step",fetch = FetchType.LAZY)
     private List<StepIngredient> stepIngredients;
 
@@ -45,6 +48,8 @@ public class Step implements Serializable {
     public String toString() {
         return "Step{" +
                 "id=" + id +
+                ", stepIngredients=" + stepIngredients +
+
                 ", stepDescription='" + stepDescription + '\'' +
                 ", stepNumber=" + stepNumber +
                 ", image=" + Arrays.toString(image) +
