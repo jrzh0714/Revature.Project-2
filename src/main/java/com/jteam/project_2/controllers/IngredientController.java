@@ -24,11 +24,19 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
+    /**
+     * Gets all of the ingredients that exist in the database
+     * @return a list of all possible ingredients
+     */
     @GetMapping("all")
     public List<Ingredient> possibleIngredients(){
         return ingredientService.findAll();
     }
 
+    /**
+     * Gets all of the units of volume that the user can select
+     * @return a list of all units of volume in the code
+     */
     @GetMapping("units/volume")
     public Map<String,Integer> getVolumeUnits(){
         Map<String,Integer> volumeUnits = new HashMap<>();
@@ -43,6 +51,10 @@ public class IngredientController {
         return volumeUnits;
     }
 
+    /**
+     * Gets all of the units of weight that the user can select
+     * @return a list of all the valid units of weight in the code
+     */
     @GetMapping("units/weight")
     public Map<String,Integer> getWeightUnits(){
         Map<String,Integer> weightUnits = new HashMap<>();
