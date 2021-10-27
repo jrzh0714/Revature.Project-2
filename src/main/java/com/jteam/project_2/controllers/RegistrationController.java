@@ -9,6 +9,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +34,7 @@ import java.util.Map;
 public class RegistrationController {
     private UserService userService;
 
-
+    Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
     @Autowired
     public RegistrationController(UserService userService) {
@@ -41,12 +43,14 @@ public class RegistrationController {
 
     @PostMapping(path="/register",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> register(@RequestBody User newuser) {
+        logger.trace("Begin register");
+        logger.trace("newuser = " + newuser);
         User newregistration = newuser;
-        System.out.println(newregistration);
         String hashedpw = BCrypt.hashpw(newregistration.getHash(),BCrypt.gensalt());
         newregistration.setHash(hashedpw);
         userService.save(newregistration);
         ResponseEntity<User> returnuser = new ResponseEntity<>(newregistration, HttpStatus.OK);
+        logger.trace("End register");
         return returnuser;
     }
 }
