@@ -65,10 +65,6 @@ public class Recipe implements Serializable,Cloneable {
     @Column(name="difficulty")
     private int Difficulty;
 
-    public Recipe(Recipe that) {
-        this(that.getId(), that.getUserId(), that.getUser(), that.getRecipeSteps(), that.getName(),that.getRating(),that.getThumbnail(),that.getLikes()
-                ,that.getViewCount(),that.getPublishDate(),that.getDifficulty());
-    }
     @Override
     public String toString() {
         return "Recipe{" +
