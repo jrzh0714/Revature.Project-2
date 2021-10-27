@@ -24,5 +24,5 @@ public class Ingredient {
     private String name;
 
     @Column(name="image")
-    private String image;
+    private byte[] image;
 }

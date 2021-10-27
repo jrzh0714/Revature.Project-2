@@ -35,7 +35,7 @@ public class Recipe implements Serializable,Cloneable {
     @JsonBackReference
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "recipe", fetch = FetchType.LAZY)
     @JsonManagedReference(value="steps")
     private List<Step> recipeSteps;
 
