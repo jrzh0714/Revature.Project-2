@@ -26,11 +26,11 @@ public class StepIngredient implements Serializable {       //TODO - Needs doubl
 
     @Id
     @Column(name="ingredient_id")
-
     private int ingredientId;
 
+    @JsonBackReference(value="stepingredientsI")
     @JoinColumn(name = "ingredient_id")
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, optional = false, fetch = FetchType.LAZY)
     @MapsId
     private Ingredient ingredient;
 
