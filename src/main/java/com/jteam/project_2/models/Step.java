@@ -48,6 +48,8 @@ public class Step implements Serializable {
     public String toString() {
         return "Step{" +
                 "id=" + id +
+                ", stepIngredients=" + stepIngredients +
+
                 ", stepDescription='" + stepDescription + '\'' +
                 ", stepNumber=" + stepNumber +
                 ", image=" + Arrays.toString(image) +

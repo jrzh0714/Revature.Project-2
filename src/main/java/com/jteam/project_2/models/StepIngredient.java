@@ -29,7 +29,6 @@ public class StepIngredient implements Serializable {       //TODO - Needs doubl
 
     private int ingredientId;
 
-    @JsonIgnore
     @JoinColumn(name = "ingredient_id")
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @MapsId

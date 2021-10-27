@@ -21,7 +21,7 @@ import java.util.Objects;
 @Setter
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"}, ignoreUnknown = true)
 
-public class Recipe implements Serializable {
+public class Recipe implements Serializable,Cloneable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="recipe_id")
@@ -65,6 +65,10 @@ public class Recipe implements Serializable {
     @Column(name="difficulty")
     private int Difficulty;
 
+    public Recipe(Recipe that) {
+        this(that.getId(), that.getUserId(), that.getUser(), that.getRecipeSteps(), that.getName(),that.getRating(),that.getThumbnail(),that.getLikes()
+                ,that.getViewCount(),that.getPublishDate(),that.getDifficulty());
+    }
     @Override
     public String toString() {
         return "Recipe{" +

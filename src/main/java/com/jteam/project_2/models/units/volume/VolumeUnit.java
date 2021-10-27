@@ -1,9 +1,12 @@
 package com.jteam.project_2.models.units.volume;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.jteam.project_2.models.StepIngredient;
+import com.jteam.project_2.models.units.weight.WeightUnit;
 import lombok.Getter;
 
 @Getter
+@JsonDeserialize(as= Volume.class)
 public abstract class VolumeUnit {
 
     protected String unitName;
