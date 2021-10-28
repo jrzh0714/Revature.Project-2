@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 8001
   servlet:
     context-path: /
 
@@ -9,9 +9,9 @@ my:
 
 spring:
   datasource:
-    url: jdbc:postgresql://postgres-project.c51fifophylr.us-east-2.rds.amazonaws.com:5432/postgres
-    username: postgres
-    password: jteam2021
+    url: ${PROJECT2DBURL}
+    username: ${PROJECT2DBUSERNAME}
+    password: ${PROJECT2DBPASSWORD}
     driver-class-name: org.postgresql.Driver
   security:
     user:
