@@ -1,0 +1,67 @@
+<div *ngIf="recipe" class="recipeheaderrow">
+    <div class="headerleft" (click)="back()">
+        <mat-icon>arrow_back_ios</mat-icon>
+        <span>back</span>
+    </div>
+    <div class="headerright">
+        <span><mat-icon>visibility</mat-icon></span>
+
+        <span>
+            {{recipe.viewCount}} views 
+        </span>
+        <span *ngIf="convertedDate">Published on {{convertedDate}}</span>
+    </div>
+</div>
+<div *ngIf="recipe" class="recipecontainer">
+    
+
+    <div class="title">
+        <div class="titleleft">
+            <span class="recipeusername" routerLink="/user/{{recipeAuthorUsername}}">{{recipeAuthorUsername}}</span>
+        <span class="recipename">{{recipe.name}}</span>
+        </div>
+        <div class="titleright" (click)="likerecipe($event)">
+            <mat-icon class="heart liked" *ngIf="liked">favorite</mat-icon>
+            <mat-icon class="heart" *ngIf="!liked">favorite_border</mat-icon>
+            <span>{{recipe.likes}}</span>
+        </div>
+    </div>
+    <div class="recipecontent">
+        <div class = "imgcontainer">
+            <div class="recipeimage" [ngStyle]="{ 'background-image': 'url(' + imageSrc + ')'}" >
+
+            </div>
+        </div>
+        <div class= "recipedesc">
+            <div class="recipemeta">
+                <span>
+                    <mat-icon>star</mat-icon>
+                    {{recipe.rating}}
+                </span>
+                <span>Difficulty: {{recipe.difficulty}}</span>
+
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id augue scelerisque purus id etiam mi lectus. Id cum egestas vel fermentum. Pellentesque sapien sodales molestie at malesuada. Augue faucibus pulvinar tellus orci.</p>
+
+        </div>
+        
+    </div>
+    <div class="recipeingredients">
+        <div>
+            <h2>Ingredients</h2>
+
+            <span></span>
+            <p></p>
+
+        </div>
+    </div>
+    <div class="recipesteps">
+        <h2>Steps</h2>
+        <div class="steps" *ngFor="let step of recipe.recipeSteps">
+            <span>{{step.stepNumber}}.</span>
+            <span>{{step.stepDescription}}</span>
+
+        </div>
+    </div>
+
+</div>

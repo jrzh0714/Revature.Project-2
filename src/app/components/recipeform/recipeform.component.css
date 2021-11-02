@@ -1,0 +1,162 @@
+.recipeform {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Work Sans", sans-serif;
+  margin-top: 50px;
+}
+.recipeimgcontainer {
+  width: 400px;
+  height: 400px;
+  background-color: rgb(240, 240, 240);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.recipeformtitle {
+  width: 50%;
+}
+#image {
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+.recipeimgcontainer img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  height: 350px;
+}
+.recipeform h1 {
+  font-family: "Work Sans", sans-serif;
+  padding: 30px 0px 0px 0px;
+  font-weight: 700;
+  font-size: 35px;
+  letter-spacing: -0.5px;
+}
+.recipeformcontainer {
+  padding: 50px;
+  border-radius: 15px;
+  background-color: rgb(253, 245, 231);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.form-group {
+  padding: 20px 0px 30px 0px;
+  display: flex;
+  width: 100%;
+  margin: 20px;
+
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  border-bottom: 2px solid rgb(201, 201, 201);
+}
+.form-group label {
+  letter-spacing: -0.9px;
+
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: rgb(58, 58, 58);
+  padding-bottom: 7px;
+}
+
+.form-group input,
+.form-group textarea {
+  border: none;
+}
+.form-group:nth-child(1) input {
+  font-family: "Work Sans", sans-serif;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 25px;
+  letter-spacing: -0.9px;
+  width: 700px;
+  background-color: rgb(253, 234, 215);
+  margin-left: 10px;
+}
+
+.addstep,
+.removestep {
+  padding: 10px;
+  font-weight: 600;
+  font-size: 25px;
+  letter-spacing: -0.9px;
+  width: 700px;
+  border-radius: 10px;
+  background-color: rgb(218, 218, 218);
+  margin: 10px;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  transition: 0.4s;
+}
+.addstep {
+  margin-top: 30px;
+}
+.addstep mat-icon,
+.removestep mat-icon {
+  margin-right: 10px;
+}
+.addstep:hover,
+.removestep:hover {
+  cursor: pointer;
+  box-shadow: rgba(19, 36, 19, 0.377) 0px 4px 18px;
+}
+.form-group:nth-child(1) input:focus {
+  outline: none;
+  border-bottom: 2px solid orange;
+}
+.recipeformstep .form-group textarea {
+  font-family: "Work Sans", sans-serif;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: rgb(253, 234, 215);
+  margin-left: 10px;
+  width: 500px;
+  height: 200px;
+}
+.recipeformstep .form-group textarea:focus {
+  outline: none;
+  border-bottom: 2px solid orange;
+}
+
+.form-group button {
+  border: none;
+  width: 20%;
+  font-family: "Work Sans", sans-serif;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  font-size: 17px;
+  border-radius: 10px;
+  background-color: rgb(214, 213, 213);
+  padding: 10px 5px 10px 5px;
+  margin-bottom: 10px;
+  transition: ease-in-out 0.4s;
+  color: rgb(61, 61, 60);
+}
+.form-group button:hover {
+  cursor: pointer;
+  background-color: rgb(224, 223, 223);
+
+  box-shadow: rgba(19, 36, 19, 0.377) 0px 4px 18px;
+}
+.removeredient {
+  margin-bottom: 20px;
+}

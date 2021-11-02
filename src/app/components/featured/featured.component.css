@@ -1,0 +1,72 @@
+.featuredcontainer {
+  margin-top: 20px;
+  padding: 50px;
+  width: 100%;
+  font-family: "Work Sans", sans-serif;
+}
+
+.carousel-cell .featuredrecipedetail {
+  display: flex;
+  flex-direction: row;
+}
+.recipeimgcontainer {
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-color: #e4ecf6;
+}
+.recipename {
+  font-family: "Work Sans", sans-serif;
+
+  padding: 30px;
+  margin-left: 20px;
+
+  font-weight: 700;
+  font-size: 45px;
+  color: #3e3c3c;
+  letter-spacing: -0.5px;
+  line-height: 33px;
+}
+.recipeinfocontainer {
+  margin-top: 50px;
+}
+.recipedetails {
+  margin-top: 40px;
+}
+.recipelikes,
+.recipedate,
+.recipeviews {
+  display: block;
+  font-family: "Work Sans", sans-serif;
+  margin-left: 70px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 25px;
+  color: #3e3c3c;
+  letter-spacing: -0.7px;
+  line-height: 33px;
+}
+
+.featuredtitle h1 {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  margin-bottom: 50px;
+  font-size: 40px;
+  color: #525252;
+  letter-spacing: -1px;
+}
+
+.carousel-cell {
+  padding: 40px;
+}
+.featuredrecipe {
+  transition: 0.4s;
+}
+.featuredrecipe:hover {
+  cursor: pointer;
+  background-color: rgb(243, 243, 243);
+}

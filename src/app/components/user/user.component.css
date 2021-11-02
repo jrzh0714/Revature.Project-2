@@ -1,0 +1,151 @@
+.userpage {
+  display: flex;
+  flex-direction: column;
+  font-family: "Work Sans", sans-serif;
+  width: 100%;
+  align-items: center;
+}
+.profiletitle {
+  width: 60%;
+  margin: 40px 0px 20px 0px;
+  padding: 20px;
+}
+.profiletitle span {
+  font-size: 43px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #525252;
+}
+.usercontainer {
+  width: 60%;
+  border-radius: 20px;
+  max-width: 900px;
+  padding: 50px 70px 50px 70px;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+}
+.userprofilerow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px solid rgb(36, 36, 36);
+  padding-bottom: 70px;
+}
+
+.avatarcontainer {
+  width: 40%;
+}
+.userpageavatar {
+  width: 17vw;
+  height: 17vw;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 250px;
+  max-height: 250px;
+  background-color: #d8e3ef;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png");
+}
+
+.userprofileinfo {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+.userprofileinfo span {
+  margin-bottom: 17px;
+}
+.userfullname {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+.username {
+  color: #828282;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  width: 100%;
+}
+.useremail {
+  color: #828282;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+.recipetitle {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+  font-family: "Work Sans", sans-serif;
+  color: #525252;
+}
+.usercontent {
+  margin-top: 50px;
+}
+.userrecipelist {
+  margin-top: 40px;
+  padding: 30px;
+  background-color: #efefef;
+  border-radius: 20px;
+}
+.userrecipe {
+  height: 130px;
+  border-radius: 20px;
+  background: rgb(61, 99, 46);
+  background: linear-gradient(
+    310deg,
+    rgba(61, 99, 46, 1) 15%,
+    rgba(83, 102, 56, 1) 84%
+  );
+  padding: 20px;
+  transition: 0.3s;
+  margin-bottom: 40px;
+}
+.userrecipe:hover {
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.userrecipe h2 {
+  font-family: "Work Sans", sans-serif;
+  color: rgb(241, 241, 241);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+.userdesc {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.7px;
+}
+.underline {
+  color: black;
+}
+
+.recipetitle span {
+  margin-right: 20px;
+}
+
+.recipetitle span:hover {
+  cursor: pointer;
+  color: #365224;
+  text-decoration: underline 4px solid black;
+}
+
+.userrecipe span {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  padding: 10px;
+  background-color: rgb(61, 61, 61);
+  border-radius: 10px;
+  margin-right: 10px;
+  color: white;
+}

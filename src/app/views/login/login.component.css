@@ -1,0 +1,106 @@
+.loginpage {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
+}
+.loginformcontainer {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 20px;
+  font-family: "Work Sans", sans-serif;
+  letter-spacing: -0.5px;
+  font-weight: 600;
+  background-color: #faf7f2;
+  width: 300px;
+  min-width: 300px;
+
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 20px 0 20px 0;
+  width: 100%;
+  max-width: 250px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  color: rgb(51, 51, 51);
+  font-size: 15px;
+  padding: 5px;
+}
+.form-group input {
+  padding: 5px 15px 5px 15px;
+  border-radius: 10px;
+  border: none;
+  font-family: "Work Sans", sans-serif;
+  letter-spacing: -0.5px;
+  font-weight: 600;
+  font-size: 17px;
+  max-width: 170px;
+  background-color: #e8e5e5;
+  color: rgb(78, 78, 78);
+}
+
+.form-group input:focus {
+  outline: none;
+}
+.buttons {
+  margin: 40px 0 20px 0;
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form-group button {
+  border: none;
+  width: 40%;
+  font-family: "Work Sans", sans-serif;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  font-size: 17px;
+  border-radius: 10px;
+  background-color: rgb(214, 213, 213);
+  padding: 10px 5px 10px 5px;
+  margin-bottom: 10px;
+  transition: ease-in-out 0.4s;
+  color: rgb(61, 61, 60);
+}
+.form-group button:hover {
+  cursor: pointer;
+  background-color: rgb(224, 223, 223);
+
+  box-shadow: rgba(19, 36, 19, 0.377) 0px 4px 18px;
+}
+.btn-link {
+  color: rgb(52, 88, 16);
+}
+.btn-link:visited {
+  color: rgb(52, 88, 16);
+}
+.logintitle {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: flex-start;
+  margin-top: 50px;
+}
+.logintitle h1 {
+  font-family: "Work Sans", sans-serif;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  font-size: 35px;
+  color: rgb(49, 49, 49);
+}

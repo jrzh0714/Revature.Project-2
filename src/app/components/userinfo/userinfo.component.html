@@ -1,0 +1,18 @@
+<div class="userinfocontainer">
+    <div class="create"*ngIf="username">
+        <mat-icon>add</mat-icon>
+        <span routerLink="/create" routerLinkActive="router-link-active">Create Recipe</span>
+    </div>
+    <div class="avatarcontainer">
+
+    </div>
+    
+    <div class="userinfo" *ngIf="username">
+        <span routerLink="/user/{{username}}" routerLinkActive="router-link-active" >{{username}}</span>
+        <span [routerLink]="['/logout']" (logout)="logout()" routerLinkActive="router-link-active" >Logout</span>
+    </div>
+    <div class="userinfo" *ngIf="!username">
+        <span [routerLink]="['/register']" routerLinkActive="router-link-active" >Register</span>
+        <span [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</span>
+    </div>
+</div>

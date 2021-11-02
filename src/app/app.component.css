@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  width: 100%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  background: #faf5ee;
+  padding: 3px 5px;
+}

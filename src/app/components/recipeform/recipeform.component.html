@@ -1,0 +1,81 @@
+<div class="recipeform">
+    <div class="recipeformtitle">
+        <h1>New Recipe</h1>
+    </div>
+
+    <div class="recipeformcontainer">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="recipename">Recipe Name</label>
+                <input type="text" placeholder="ex. Cheeseburger" formControlName="recipename" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.recipename.errors }" />
+                <div *ngIf="submitted && f.recipename.errors" class="invalid-feedback">
+                    <div *ngIf="f.recipename.errors.required">Recipe Name is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="recipeimgcontainer">
+                    <img [src]="imageSrc" *ngIf="imageSrc">
+
+                </div>
+                <label for="recipeimage">Recipe Thumbnail</label>
+                <input id="image" #fileInput (change)="onFileChange($event)" type="file" formControlName="recipeimage" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.recipeimage.errors }" />
+                <div *ngIf="submitted && f.recipeimage.errors" class="invalid-feedback">
+                    <div *ngIf="f.recipeimage.errors.required">Recipe Thumbnail is required</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="recipediff">Recipe Difficulty</label>
+                <span>{{f.recipediff.value != 0 ? f.recipediff.value : 0}}</span>
+                <input type="range" min="1" max="5" value="{{f.recipediff.value}}" class="slider" id="myRange"
+                formControlName="recipediff" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.recipediff.errors }">
+                <div *ngIf="submitted && f.recipediff.errors" class="invalid-feedback">
+                    <div *ngIf="f.recipediff.errors.required">Recipe Difficulty is required</div>
+                </div>
+            </div>
+            <div class="recipeformstep" *ngFor="let item of recipeSteps">
+        
+                <h1>Step {{item.stepNumber}}</h1>
+                <div class="form-group">
+                    <label for="Ingredients">Ingredients</label>
+                        <div class="stepIngredients" *ngFor="let ingredient of item.stepIngredients">
+                            <input type="text" placeholder="ex. Salt"  [value]="ingredient.ingredientname" [(ngModel)]="ingredient.ingredientname" [ngModelOptions]="{standalone: true}"class="form-control" />
+                            <input type="text" placeholder="ex. 1"  [value]="ingredient.weight" [(ngModel)]="ingredient.weight" [ngModelOptions]="{standalone: true}"class="form-control" />
+                            <input type="text" placeholder="ex. Gram"  [value]="ingredient.weightUnit" [(ngModel)]="ingredient.weightUnit" [ngModelOptions]="{standalone: true}"class="form-control" />
+                            <input type="text" placeholder="ex. 1"  [value]="ingredient.volume" [(ngModel)]="ingredient.volume" [ngModelOptions]="{standalone: true}"class="form-control"  />
+                            <input type="text" placeholder="ex. Cup"  [value]="ingredient.volumeUnit" [(ngModel)]="ingredient.volumeUnit" [ngModelOptions]="{standalone: true}"class="form-control" />
+
+                        </div>
+                        <div class="addingredient" (click)="addnewingredient(item.stepNumber)">
+                            <mat-icon >add</mat-icon><span> Add Ingredient</span>
+            
+                        </div>
+                        <div class="removeredient" (click)="removeingredient(item.stepNumber)">
+                            <mat-icon >remove</mat-icon><span> Remove Ingredient</span>
+            
+                        </div>
+                    <label for="Description">Description</label>
+                    <textarea  type="text" [value]="item.stepDescription" [(ngModel)]="item.stepDescription" [ngModelOptions]="{standalone: true}"class="form-control" [ngClass]="{ 'is-invalid': submitted && item.stepDescription.errors }" ></textarea>
+                    <div *ngIf="submitted && item.stepDescription.errors" class="invalid-feedback">
+                        <div *ngIf="item.stepDescription.errors.required">Step Description is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="addstep" (click)="addnewstep()">
+                <mat-icon >add</mat-icon><span> Add Step</span>
+
+            </div>
+            <div class="removestep" (click)="removestep()">
+                <mat-icon >remove</mat-icon><span> Remove Last Step</span>
+
+            </div>
+            <div class="form-group buttons">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+

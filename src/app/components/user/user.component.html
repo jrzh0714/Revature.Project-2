@@ -1,0 +1,62 @@
+
+<div class="userpage">
+    <div class="profiletitle">
+        <span>Profile</span>
+    </div>
+    <div *ngIf="user" class="usercontainer">
+        <div class="userprofilerow">
+            <div class="avatarcontainer">
+                <div class="userpageavatar">
+
+                </div>
+            </div>
+            <div class="userprofileinfo">
+                <span class="userfullname">{{user.firstname}} {{user.lastname}}</span>
+                <span class="username">@{{user.username}}</span>
+                <span class="useremail">{{user.email}}</span>
+                <p class="userdesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id augue scelerisque purus id etiam mi lectus. Id cum egestas vel fermentum. Pellentesque sapien sodales molestie at malesuada. Augue faucibus pulvinar tellus orci.</p>
+
+            </div>
+        </div>
+        <div class="usercontent">
+            <div class="recipetitle"><Span [class.underline]="display == 'recipes'" (click)="showrecipes($event)">Recipes</Span><span [class.underline]="display == 'likes'" (click)="showliked($event)">Liked Recipes</span></div>
+
+            <div  class="userrecipelist" *ngIf="display == 'recipes'">
+                <div  *ngFor="let item of user.userRecipeList" class="userrecipe" routerLink="/recipe/{{item.id}}" routerLinkActive="router-link-active" >
+                    <p *ngIf="user.userRecipeList==[]"> No recipes found.</p>
+
+                    <h2>
+                        {{item.name}}
+                    </h2>
+                    <span>
+                        Posted on: {{item.publishDate}}
+                    </span>
+                    <span>
+                        Views: {{item.viewCount}}
+                    </span>
+                    <span>
+                        Likes: {{item.likes}}
+                    </span>
+                </div>
+            </div>
+            <div  class="userrecipelist" *ngIf="display == 'likes'">
+
+                <div  *ngFor="let item of likedrecipes" class="userrecipe" routerLink="/recipe/{{item.id}}" routerLinkActive="router-link-active" >
+                    <h2>
+                        {{item.name}}
+                    </h2>
+                    <span>
+                        Posted on: {{item.publishDate}}
+                    </span>
+                    <span>
+                        Views: {{item.viewCount}}
+                    </span>
+                    <span>
+                        Likes: {{item.likes}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

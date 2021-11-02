@@ -1,0 +1,21 @@
+<div class="homepage">
+    <app-featured></app-featured>
+    <div *ngIf="searchResult" class="examplerecipes">
+        <h2 class="title">Checkout some of our Mushroom Recipes</h2>
+        <div *ngFor="let item of searchResult" class="result"
+        routerLink="/recipe/{{item.id}}" routerLinkActive="router-link-active">
+            <h2>
+                {{item.name}}
+            </h2>
+            <span>
+                Posted on: {{item.publishDate}}
+            </span>
+            <span>
+                Views: {{item.viewCount}}
+            </span>
+            <span>
+                Likes: {{item.likes}}
+            </span>
+        </div>
+    </div>
+</div>
