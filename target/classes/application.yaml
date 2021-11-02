@@ -1,0 +1,19 @@
+server:
+  port: 8001
+  servlet:
+    context-path: /
+
+my:
+  message:
+    value: 'Hello, World'
+
+spring:
+  datasource:
+    url: ${PROJECT2DBURL}
+    username: ${PROJECT2DBUSERNAME}
+    password: ${PROJECT2DBPASSWORD}
+    driver-class-name: org.postgresql.Driver
+  security:
+    user:
+      name: 'JTeam'
+      password: 'password2021'
